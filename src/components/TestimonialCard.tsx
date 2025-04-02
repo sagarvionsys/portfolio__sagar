@@ -7,7 +7,13 @@ import Image from "next/image";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Testimonial } from "@/constants/testimonials";
 
-const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
+const TestimonialCard = ({
+  testimonial,
+  index,
+}: {
+  testimonial: Testimonial;
+  index: number;
+}) => {
   return (
     <motion.div
       key={testimonial.id}
@@ -15,7 +21,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
       animate={{ opacity: 1, y: 0, rotate: 0 }}
       transition={{
         duration: 0.5,
-        delay: testimonial.id * 0.2,
+        delay: index * 0.2,
         ease: "easeOut",
       }}
       whileHover={{ scale: 1.05 }}

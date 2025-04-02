@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "randomuser.me",
       },
+      {
+        hostname: "pbs.twimg.com",
+      },
     ],
   },
 };
