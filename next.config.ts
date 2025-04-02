@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "assets.aceternity.com",
       },
+      {
+        hostname: "randomuser.me",
+      },
     ],
   },
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { projects } from "@/constants/Projects";
+import { projects } from "@/constants/projects";
 import ProjectCard from "./ProjectCard";
 
 const Projects = () => {

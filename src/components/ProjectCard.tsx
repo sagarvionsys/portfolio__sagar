@@ -10,19 +10,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import { Project } from "@/constants/projects";
+import { Badge } from "./ui/badge";
 
-const ProjectCard = ({
-  project,
-}: {
-  project: {
-    title: string;
-    description: string;
-    images: string[];
-    liveUrl: string;
-    githubUrl: string;
-    skills: any[];
-  };
-}) => {
+const ProjectCard = ({ project }: { project: Project }) => {
   const [step, setStep] = useState(0);
   const totalSteps = project.images.length;
 
@@ -45,6 +36,7 @@ const ProjectCard = ({
         <div>
           <CardTitle>{project.title}</CardTitle>
           <CardDescription>{project.description}</CardDescription>
+          <Badge className="text-xs px-3 py-1 mt-3">{project.category}</Badge>
         </div>
         <div className="flex space-x-2">
           {/* Live Preview Button */}

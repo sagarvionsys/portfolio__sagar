@@ -5,10 +5,21 @@ import {
   SiTailwindcss,
 } from "react-icons/si";
 
-export const projects = [
+export interface Project {
+  title: string;
+  description: string;
+  images: string[];
+  liveUrl: string;
+  category: string;
+  githubUrl: string;
+  skills: any[];
+}
+
+export const projects: Project[] = [
   {
     title: "Project One",
     description: "An innovative UI design project.",
+    category: "Web Applications",
     images: [
       "https://assets.aceternity.com/pro/hero-sections.png",
       "https://assets.aceternity.com/pro/bento-grids.png",
@@ -20,6 +31,7 @@ export const projects = [
   {
     title: "Project Two",
     description: "A seamless UX experience for web applications.",
+    category: "Mobile Applications",
     images: [
       "https://assets.aceternity.com/templates/startup-1.webp",
       "https://assets.aceternity.com/templates/startup-2.webp",
@@ -31,6 +43,7 @@ export const projects = [
   {
     title: "Project Three",
     description: "A powerful real-time web application.",
+    category: "Web Applications",
     images: [
       "https://originui.com/dialog-content.png",
       "https://originui.com/card-content.png",
