@@ -6,7 +6,7 @@ import { workData } from "@/constants";
 const Work = () => {
   return (
     <section className="min-h-screen">
-      <Timeline data={workData} />;
+      <Timeline data={workData} />
     </section>
   );
 };
