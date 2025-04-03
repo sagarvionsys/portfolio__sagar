@@ -7,19 +7,10 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import Link from "next/link";
 import link from "@/constants/links";
+import { NavBar } from "./ui/tubelight-navbar";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const menuVariants = {
     open: {
@@ -43,32 +34,20 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-lg shadow-lg py-2"
-          : "bg-transparent py-4"
-      }`}
-    >
+    <nav className="bg-transparent fixed w-full pt-6 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center"
+            className="flex items-center invisible"
           >
             <Code2 className="h-8 w-8 text-primary" />
-            <span className="ml-2 text-xl font-bold">SagarYenkure</span>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            {link.map(({ href, label }) => (
-              <span key={label}>
-                <Link href={href}>{label}</Link>
-              </span>
-            ))}
-
+            <NavBar items={link} />
             <ThemeToggle />
           </div>
 
@@ -103,11 +82,13 @@ const Navbar = () => {
             variants={menuVariants}
             className="absolute top-20 left-0 h-screen right-0 bg-background/95 backdrop-blur-lg shadow-lg md:hidden"
           >
-            <div className="px-4 pt-20 pb-6 space-y-3">
+            <div className="px-4 pt-20 pb-6 space-y-3 flex flex-col">
               {link.map(({ href, label }) => (
-                <span key={label}>
-                  <Link href={href}>{label}</Link>
-                </span>
+                <Button variant="ghost" key={label}>
+                  <Link className="text-xl" href={href}>
+                    {label}
+                  </Link>
+                </Button>
               ))}
             </div>
           </motion.div>
