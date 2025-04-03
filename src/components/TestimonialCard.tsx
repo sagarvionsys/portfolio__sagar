@@ -41,7 +41,7 @@ const TestimonialCard = ({
                 alt={testimonial.name}
                 className="rounded-full"
               />
-              <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
+              <AvatarFallback>{testimonial.name}</AvatarFallback>
             </Avatar>
           </motion.div>
 

@@ -60,7 +60,7 @@ const Navbar = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-4">
             <Button variant="ghost" className="text-sm">
               Home
             </Button>
@@ -74,7 +74,6 @@ const Navbar = () => {
               Contact
             </Button>
             <ThemeToggle />
-            <Button>Hire Me</Button>
           </div>
 
           {/* Mobile Navigation Button */}
@@ -108,7 +107,7 @@ const Navbar = () => {
             variants={menuVariants}
             className="absolute top-20 left-0 h-screen right-0 bg-background/95 backdrop-blur-lg shadow-lg md:hidden"
           >
-            <div className="px-4 pt-20 pb-6 space-y-4">
+            <div className="px-4 pt-20 pb-6 space-y-3">
               <Button
                 variant="ghost"
                 className="w-full text-left"
@@ -137,7 +136,6 @@ const Navbar = () => {
               >
                 Contact
               </Button>
-              <Button className="w-full">Hire Me</Button>
             </div>
           </motion.div>
         )}
