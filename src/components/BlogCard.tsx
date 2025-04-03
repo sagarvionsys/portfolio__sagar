@@ -22,7 +22,7 @@ const BlogCard = ({ post }: { post: Article }) => {
             </div>
           </div>
           <h2 className="text-xl font-semibold md:text-2xl lg:text-3xl">
-            <Link href={post.url} target="_blank" className="hover:underline">
+            <Link href={`/blogs/${post.slug}`} className="hover:underline">
               {post.title}
             </Link>
           </h2>
@@ -34,8 +34,7 @@ const BlogCard = ({ post }: { post: Article }) => {
           </div>
           <div className="mt-6 flex items-center  space-x-2 md:mt-8">
             <Link
-              href={post.url}
-              target="_blank"
+              href={`/blogs/${post.slug}`}
               className="inline-flex items-center justify-center font-semibold hover:underline md:text-base"
             >
               <span>Read more</span>
@@ -44,17 +43,15 @@ const BlogCard = ({ post }: { post: Article }) => {
           </div>
         </div>
         <div className="order-first sm:order-last sm:col-span-5">
-          <a href={post.url} target="_blank" className="block">
-            <div className="aspect-[16/9] overflow-clip rounded-lg border border-border">
-              <Image
-                height={100}
-                width={100}
-                src={post.image}
-                alt={post.title}
-                className="h-full w-full object-cover transition-opacity duration-300 fade-in hover:opacity-70"
-              />
-            </div>
-          </a>
+          <div className="aspect-[16/9] overflow-clip rounded-lg border border-border">
+            <Image
+              height={100}
+              width={100}
+              src={post.image}
+              alt={post.title}
+              className="h-full w-full object-cover transition-opacity duration-300 fade-in hover:opacity-70"
+            />
+          </div>
         </div>
       </div>
     </Card>
