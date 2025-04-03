@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
+import Link from "next/link";
+import link from "@/constants/links";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,18 +63,12 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" className="text-sm">
-              Home
-            </Button>
-            <Button variant="ghost" className="text-sm">
-              Experience
-            </Button>
-            <Button variant="ghost" className="text-sm">
-              Projects
-            </Button>
-            <Button variant="ghost" className="text-sm">
-              Contact
-            </Button>
+            {link.map(({ href, label }) => (
+              <span key={label}>
+                <Link href={href}>{label}</Link>
+              </span>
+            ))}
+
             <ThemeToggle />
           </div>
 
@@ -108,34 +104,11 @@ const Navbar = () => {
             className="absolute top-20 left-0 h-screen right-0 bg-background/95 backdrop-blur-lg shadow-lg md:hidden"
           >
             <div className="px-4 pt-20 pb-6 space-y-3">
-              <Button
-                variant="ghost"
-                className="w-full text-left"
-                onClick={() => setIsOpen(false)}
-              >
-                Home
-              </Button>
-              <Button
-                variant="ghost"
-                className="w-full text-left"
-                onClick={() => setIsOpen(false)}
-              >
-                Experience
-              </Button>
-              <Button
-                variant="ghost"
-                className="w-full text-left"
-                onClick={() => setIsOpen(false)}
-              >
-                Projects
-              </Button>
-              <Button
-                variant="ghost"
-                className="w-full text-left"
-                onClick={() => setIsOpen(false)}
-              >
-                Contact
-              </Button>
+              {link.map(({ href, label }) => (
+                <span key={label}>
+                  <Link href={href}>{label}</Link>
+                </span>
+              ))}
             </div>
           </motion.div>
         )}

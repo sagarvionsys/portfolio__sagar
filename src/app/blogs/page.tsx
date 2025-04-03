@@ -1,16 +1,14 @@
 import React from "react";
-import BlogCard from "./BlogCard";
-import { Button } from "@/components/ui/button"; // Importing Button from shadcn
+import BlogCard from "@/components/BlogCard";
 import posts, { Article } from "@/constants/blogs";
-import Link from "next/link";
 
-const Blogs = () => {
+const page = () => {
   return (
-    <section className="max-w-7xl mx-auto py-28 px-4 md:px-8 lg:px-10">
-      <div className="">
-        <h1 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
+    <section>
+      <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
+        <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
           Latest Tech Blogs & Insights
-        </h1>
+        </h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
           Explore blogs on software development, Stay updated with expert
           insights, tutorials, and best practices in the tech world.
@@ -21,16 +19,8 @@ const Blogs = () => {
           <BlogCard key={post.id} post={post} />
         ))}
       </div>
-
-      <div className="flex justify-center mt-3">
-        <Link href={"/blogs"}>
-          <Button variant="default" className=" hover:cursor-pointer">
-            View More
-          </Button>
-        </Link>
-      </div>
     </section>
   );
 };
 
-export default Blogs;
+export default page;
