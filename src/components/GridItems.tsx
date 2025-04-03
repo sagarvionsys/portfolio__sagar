@@ -343,7 +343,7 @@ const SkeletonFour = () => {
 const SkeletonFive = () => {
   return (
     <motion.div className="flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] bg-dot-black/[0.2] p-2">
-      <div className="bg-neutral-100 dark:bg-neutral-900 rounded-lg p-6 w-full">
+      <div className="bg-neutral-100 dark:bg-neutral-900 rounded-lg p-6 w-full py-3">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center space-x-2">
             <Link
@@ -366,7 +366,7 @@ const SkeletonFive = () => {
           </div>
         </div>
 
-        <div className="border-t border-neutral-300 dark:border-neutral-700 py-4 space-y-2">
+        <div className="border-t border-neutral-300 dark:border-neutral-700 pt-4 h-full flex flex-col gap-2">
           <div className="flex justify-between items-center">
             <span className="text-xs">Open Source Contributions</span>
             <span className="text-xs font-semibold">5+</span>
