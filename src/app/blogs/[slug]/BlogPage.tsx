@@ -11,6 +11,7 @@ import NewsletterSignup from "@/components/NewsletterSignup";
 import CodeBlock from "@/components/CodeBlock";
 import { Button } from "@/components/ui/button";
 import BackButton from "@/components/BackButton";
+import React from "react";
 
 interface BlogPageProps {
   slug: string;
@@ -74,7 +75,7 @@ const BlogPage = async ({ slug }: BlogPageProps) => {
             <ReactMarkdown
               components={{
                 h1: ({ children }) => (
-                  <span className="text-3xl font-bold mt-6">{children}</span>
+                  <h1 className="text-3xl font-bold mt-6">{children}</h1>
                 ),
                 h2: ({ children }) => (
                   <h2 className="text-2xl font-semibold mt-6">{children}</h2>
@@ -88,14 +89,16 @@ const BlogPage = async ({ slug }: BlogPageProps) => {
                 ul: ({ children }) => (
                   <ul className="list-disc ml-6 space-y-2">{children}</ul>
                 ),
-                code({ inline, children }: CodeProps) {
+                code({ inline, className, children }: CodeProps) {
                   const code = String(children).trim();
+                  const language = className?.replace("language-", "") || "tsx";
+
                   return inline ? (
                     <code className="bg-gray-200 dark:bg-gray-800 px-2 py-1 text-sm rounded-md">
                       {children}
                     </code>
                   ) : (
-                    <CodeBlock code={code} />
+                    <CodeBlock code={code} language={language} />
                   );
                 },
               }}
@@ -106,7 +109,7 @@ const BlogPage = async ({ slug }: BlogPageProps) => {
         </article>
 
         {/* Sidebar */}
-        <aside className=" lg:flex flex-col w-fit lg:w-1/3 space-y-6">
+        <aside className="lg:flex flex-col w-fit lg:w-1/3 space-y-6">
           <NewsletterSignup />
           <Card className="p-6 dark:bg-zinc-900 rounded-2xl shadow-md">
             <h2 className="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">

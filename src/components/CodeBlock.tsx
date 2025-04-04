@@ -6,7 +6,13 @@ import { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-export default function CodeBlock({ code }: { code: string }) {
+export default function CodeBlock({
+  code,
+  language = "tsx",
+}: {
+  code: string;
+  language?: string;
+}) {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const handleCopyCode = async () => {
@@ -37,7 +43,7 @@ export default function CodeBlock({ code }: { code: string }) {
       </div>
 
       <SyntaxHighlighter
-        language="tsx"
+        language={language}
         style={dracula}
         customStyle={{
           backgroundColor: "#0D0D0D",
