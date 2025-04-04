@@ -1,14 +1,12 @@
 import { Card } from "./ui/card";
 import Link from "next/link";
 import supabase from "@/lib/supabase";
-import { Article } from "@/constants/blogs";
 import RelatedBlogsSkeleton from "./Skeleton";
 
 const RelatedBlog = async () => {
   const { data: blogs, error } = await supabase
     .from("blog")
-    .select("*")
-    .range(0, 10);
+    .select("title, slug");
 
   if (!blogs || blogs?.length === 0) return <RelatedBlogsSkeleton />;
   if (error) return <div>Error loading blogs links</div>;
@@ -20,7 +18,7 @@ const RelatedBlog = async () => {
       </h2>
       <ul className="space-y-3">
         {blogs?.length > 0 &&
-          blogs.map((post: Article) => (
+          blogs.map((post) => (
             <li key={post.slug} className="group">
               <Link
                 href={`/blog/${post.slug}`}
