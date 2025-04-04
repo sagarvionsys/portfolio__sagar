@@ -146,7 +146,7 @@ Remember to check the official documentation for:
 
 Happy coding! 🚀
     `,
-    author: "John Doe",
+    author: "Sagar Yenkure",
     published: "2024-03-20",
     image:
       "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop",
