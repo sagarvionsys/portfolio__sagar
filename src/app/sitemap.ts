@@ -1,10 +1,9 @@
 import info from "@/constants/info";
-import { generateDynamicEntries, getAllBlogsFetch } from "@/lib/sitemapHelper";
+import { generateDynamicEntries } from "@/lib/sitemapHelper";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const blogs = await getAllBlogsFetch();
-  const blogSitemap = generateDynamicEntries(blogs, "/blogs");
+  const blogSitemap = await generateDynamicEntries();
 
   return [
     {

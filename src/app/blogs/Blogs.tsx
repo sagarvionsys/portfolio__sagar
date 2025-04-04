@@ -1,11 +1,20 @@
-import React from "react";
-import BlogCard from "@/components/BlogCard";
-import posts, { Article } from "@/constants/blogs";
+export const dynamic = "force-dynamic";
 
-const blogsPage = () => {
+import BlogCard from "@/components/BlogCard";
+import { Article } from "@/constants/blogs";
+import supabase from "@/lib/supabase";
+import { BlogCardSkeleton } from "@/components/Skeleton";
+import ServerErrorPage from "@/components/Error";
+
+const blogsPage = async () => {
+  const { data: blog, error } = await supabase.from("blog").select("*");
+
+  if (!blog) return <BlogCardSkeleton />;
+  if (error) return <ServerErrorPage />;
+
   return (
     <section>
-      <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
+      <div className="max-w-7xl mx-auto pt-28 py-10 px-4 md:px-8 lg:px-10">
         <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
           Latest Tech Blogs & Insights
         </h2>
@@ -14,10 +23,9 @@ const blogsPage = () => {
           insights, tutorials, and best practices in the tech world.
         </p>
       </div>
-      <div className="grid gap-y-10 sm:grid-cols-12 sm:gap-y-8 md:gap-y-12 lg:gap-y-16">
-        {posts.map((post: Article) => (
-          <BlogCard key={post.id} post={post} />
-        ))}
+      <div className="grid sm:grid-cols-12 gap-6">
+        {blog?.length > 0 &&
+          blog.map((post: Article) => <BlogCard key={post.id} post={post} />)}
       </div>
     </section>
   );

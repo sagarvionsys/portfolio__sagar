@@ -1,7 +1,7 @@
-import Blogs from "@/components/Blogs";
 import info from "@/constants/info";
 import { Metadata } from "next";
 import React from "react";
+import BlogsPage from "./Blogs";
 
 export const metadata: Metadata = {
   title:
@@ -54,7 +54,7 @@ const page = () => {
   return (
     <section>
       <h1 className="hidden">Latest Tech Blogs & Insights</h1>
-      <Blogs />
+      <BlogsPage />
     </section>
   );
 };

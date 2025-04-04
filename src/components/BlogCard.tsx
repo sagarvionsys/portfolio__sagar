@@ -1,10 +1,11 @@
-import React from "react";
 import { Card } from "./ui/card";
 import { ArrowRight } from "lucide-react";
 import { Article } from "@/constants/blogs";
 import { Badge } from "./ui/badge";
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "./ui/button";
+import formatDateWithOrdinal from "@/hooks/useformatDateWithOrdinal";
 
 const BlogCard = ({ post }: { post: Article }) => {
   return (
@@ -21,24 +22,31 @@ const BlogCard = ({ post }: { post: Article }) => {
               ))}
             </div>
           </div>
-          <h2 className="text-xl font-semibold md:text-2xl lg:text-3xl">
-            <Link href={`/blogs/${post.slug}`} className="hover:underline">
+          <Link href={`/blogs/${post.slug}`} className="hover:underline">
+            <h2 className="text-xl font-semibold md:text-2xl lg:text-3xl">
               {post.title}
-            </Link>
-          </h2>
+            </h2>
+          </Link>
           <p className="mt-4 text-muted-foreground md:mt-5">{post.summary}</p>
           <div className="mt-6 flex items-center space-x-4 text-sm md:mt-8">
             <span className="text-muted-foreground">{post.author}</span>
             <span className="text-muted-foreground">•</span>
-            <span className="text-muted-foreground">{post.published}</span>
+            <span className="text-muted-foreground">
+              {formatDateWithOrdinal(post.published)}
+            </span>
           </div>
-          <div className="mt-6 flex items-center  space-x-2 md:mt-8">
+          <div className="mt-6 flex items-center md:mt-8">
             <Link
               href={`/blogs/${post.slug}`}
-              className="inline-flex items-center justify-center font-semibold hover:underline md:text-base"
+              className=" items-center justify-center font-semibold md:text-base"
             >
-              <span>Read more</span>
-              <ArrowRight className="ml-2 size-4 transition-transform" />
+              <Button
+                variant={"outline"}
+                className="flex gap-2 justify-center items-center hover:cursor-pointer"
+              >
+                Read more
+                <ArrowRight />
+              </Button>
             </Link>
           </div>
         </div>

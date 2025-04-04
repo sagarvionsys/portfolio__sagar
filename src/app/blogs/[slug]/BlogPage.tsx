@@ -1,19 +1,19 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import posts from "@/constants/blogs";
 import { Calendar, Check, Copy, User } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
-import Link from "next/link";
 import Image from "next/image";
-import { Input } from "@/components/ui/input";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import RelatedBlog from "@/components/RelatedBlog";
+import supabase from "@/lib/supabase";
+import formatDateWithOrdinal from "@/hooks/useformatDateWithOrdinal";
 
 interface CodeProps extends React.HTMLAttributes<HTMLElement> {
   inline?: boolean;
@@ -21,7 +21,7 @@ interface CodeProps extends React.HTMLAttributes<HTMLElement> {
   children?: React.ReactNode;
 }
 
-const BlogPage = ({ slug }: { slug: string }) => {
+const BlogPage = async ({ slug }: { slug: string }) => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const handleCopyCode = async (code: string) => {
@@ -37,18 +37,13 @@ const BlogPage = ({ slug }: { slug: string }) => {
     }
   };
 
-  const article = posts.find((item) => item.slug === slug);
-  if (!article)
-    return (
-      <section className="max-w-7xl mx-auto py-30 text-center">
-        <h1 className="text-4xl font-bold text-red-600">
-          404 - Blog Not Found
-        </h1>
-        <Link href="/blog" className="text-blue-600 hover:underline mt-4 block">
-          Go back to Blogs
-        </Link>
-      </section>
-    );
+  const { data: articles, error } = await supabase
+    .from("blog")
+    .select("*")
+    .eq("slug", slug);
+
+  if (!articles || articles.length === 0) return <div>Loading...</div>;
+  const article = articles[0];
 
   return (
     <section className="max-w-6xl mx-auto px-6 md:px-4 lg:px-0 flex gap-10">
@@ -78,7 +73,7 @@ const BlogPage = ({ slug }: { slug: string }) => {
               <div className="flex items-center gap-2">
                 <Calendar className="h-5 w-5 text-white" />
                 <span className="text-white">
-                  {new Date(article.published).toLocaleDateString()}
+                  {formatDateWithOrdinal(article.published)}
                 </span>
               </div>
             </div>
@@ -161,7 +156,7 @@ const BlogPage = ({ slug }: { slug: string }) => {
             Popular Tags
           </h2>
           <div className="flex flex-wrap gap-2">
-            {article.tags.map((tag) => (
+            {article.tags.map((tag: string) => (
               <Badge
                 key={tag}
                 className="px-3 py-1 text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200"

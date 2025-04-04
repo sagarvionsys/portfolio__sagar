@@ -1,12 +1,24 @@
-import React from "react";
-import BlogCard from "./BlogCard";
-import { Button } from "@/components/ui/button"; // Importing Button from shadcn
-import posts, { Article } from "@/constants/blogs";
-import Link from "next/link";
+export const dynamic = "force-dynamic";
 
-const Blogs = () => {
+import BlogCard from "./BlogCard";
+import { Button } from "@/components/ui/button";
+import { Article } from "@/constants/blogs";
+import supabase from "@/lib/supabase";
+import Link from "next/link";
+import { BlogCardSkeleton } from "./Skeleton";
+import ServerErrorPage from "./Error";
+
+const Blogs = async () => {
+  const { data: blog, error } = await supabase
+    .from("blog")
+    .select("*")
+    .range(0, 5);
+
+  if (!blog) return <BlogCardSkeleton />;
+  if (error) return <ServerErrorPage />;
+
   return (
-    <section className="max-w-7xl mx-auto py-28 px-4 md:px-8 lg:px-10">
+    <section className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
       <div className="">
         <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
           Latest Tech Blogs & Insights
@@ -17,9 +29,8 @@ const Blogs = () => {
         </p>
       </div>
       <div className="grid gap-y-10 sm:grid-cols-12 sm:gap-y-8 md:gap-y-12 lg:gap-y-16">
-        {posts.map((post: Article) => (
-          <BlogCard key={post.id} post={post} />
-        ))}
+        {blog?.length > 0 &&
+          blog.map((post: Article) => <BlogCard key={post.id} post={post} />)}
       </div>
 
       <div className="flex justify-center mt-3">
