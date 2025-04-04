@@ -1,25 +1,39 @@
 import { Metadata } from "next";
 import BlogPage from "./BlogPage";
-import posts from "@/constants/blogs";
+import { getAllBlogsFetch } from "@/lib/sitemapHelper";
+import info from "@/constants/info";
 
-export const generateMetadata = ({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata => {
-  const article = posts.find((item) => item.slug === params.slug);
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const posts = await getAllBlogsFetch();
+  const article = posts?.find((item) => item?.slug === slug);
+
   if (!article) {
     return {
       title: "Blog Not Found",
       description: "The requested blog post could not be found.",
     };
   }
+
+  const description = `${article.summary.slice(0, 150)}...`;
+
   return {
     title: article.title,
-    description: article.content.slice(0, 150) + "...",
+    description,
+    keywords: article.tags,
+    publisher: "Sagar Yenkure",
+    creator: "Sagar Yenkure",
+
     openGraph: {
       title: article.title,
-      description: article.content.slice(0, 150) + "...",
+      description,
+      type: "article",
+      url: `${info.HOST_URL}/blogs/${article.slug}`,
+      siteName: "Sagar Yenkure - Software Engineer",
       images: [
         {
           url: article.image,
@@ -29,17 +43,46 @@ export const generateMetadata = ({
         },
       ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description,
+      images: [
+        {
+          url: article.image,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+    },
+    alternates: {
+      canonical: `${info.HOST_URL}/blogs/${article.slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: false,
+        noimageindex: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
+    },
   };
-};
+}
 
-export default function BlogPageWrapper({
+export default async function BlogPageWrapper({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   return (
     <section className="py-24">
-      <BlogPage slug={params.slug} />;
+      <BlogPage slug={slug} />
     </section>
   );
 }

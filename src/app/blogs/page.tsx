@@ -1,24 +1,60 @@
+import Blogs from "@/components/Blogs";
+import info from "@/constants/info";
+import { Metadata } from "next";
 import React from "react";
-import BlogCard from "@/components/BlogCard";
-import posts, { Article } from "@/constants/blogs";
+
+export const metadata: Metadata = {
+  title:
+    "Tech Blogs by Sagar Yenkure | Web Development, Programming & Insights",
+  description:
+    "Explore insightful tech blogs on software development, web technologies, and full stack engineering written by Sagar Yenkure.",
+  keywords: [
+    "Tech Blogs",
+    "Tutorials",
+    "Software Development",
+    "Problem Solving",
+    "Web Development",
+  ],
+  publisher: "Sagar Yenkure",
+  creator: "Sagar Yenkure",
+  openGraph: {
+    title:
+      "Tech Blogs by Sagar Yenkure | Web Development, Programming & Insights",
+    description:
+      "Read the latest tech blogs and tutorials by Sagar Yenkure on full stack development, React, Next.js, and more.",
+    url: `${info.HOST_URL}/blogs`,
+    type: "article",
+    images: [`${info.HOST_URL}/opengraph.png`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tech Blogs by Sagar Yenkure",
+    description:
+      "Stay updated with tech articles and programming tips by Sagar Yenkure.",
+    images: [`${info.HOST_URL}/opengraph.png`],
+  },
+  alternates: {
+    canonical: `${info.HOST_URL}/blogs`,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+};
 
 const page = () => {
   return (
     <section>
-      <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
-        <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
-          Latest Tech Blogs & Insights
-        </h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          Explore blogs on software development, Stay updated with expert
-          insights, tutorials, and best practices in the tech world.
-        </p>
-      </div>
-      <div className="grid gap-y-10 sm:grid-cols-12 sm:gap-y-8 md:gap-y-12 lg:gap-y-16">
-        {posts.map((post: Article) => (
-          <BlogCard key={post.id} post={post} />
-        ))}
-      </div>
+      <h1 className="hidden">Latest Tech Blogs & Insights</h1>
+      <Blogs />
     </section>
   );
 };
