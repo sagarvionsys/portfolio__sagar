@@ -1,3 +1,4 @@
+import { cloudinaryUrl } from "@/lib/cloudinary";
 import Image from "next/image";
 
 export const workData = [
@@ -15,15 +16,17 @@ export const workData = [
         </p>
         <div className="grid grid-cols-2 gap-4">
           <Image
-            src="https://assets.aceternity.com/templates/startup-1.webp"
-            alt="Startup Template"
+            src={cloudinaryUrl("v1743940843/office/1719672018935_hvt5m8.jpg")}
+            alt="Champion Team of the Quarter"
             width={500}
             height={500}
             className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"
           />
           <Image
-            src="https://assets.aceternity.com/templates/startup-2.webp"
-            alt="Startup Template"
+            src={cloudinaryUrl(
+              "v1743940842/office/WhatsApp_Image_2025-04-06_at_5.01.25_PM_odbosc.jpg"
+            )}
+            alt="Team Celebration"
             width={500}
             height={500}
             className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"
@@ -60,15 +63,17 @@ export const workData = [
         </ul>
         <div className="grid grid-cols-2 gap-4">
           <Image
-            src="https://assets.aceternity.com/pro/hero-sections.png"
-            alt="Project Showcase"
+            src={cloudinaryUrl(
+              "v1743940844/office/WhatsApp_Image_2025-04-06_at_5.05.57_PM_otfut4.jpg"
+            )}
+            alt="Software Engineer Photo"
             width={500}
             height={500}
             className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"
           />
           <Image
-            src="https://assets.aceternity.com/pro/bento-grids.png"
-            alt="Bento Grid Design"
+            src={cloudinaryUrl("v1743941369/office/1737358854011_gxyzat.jpg")}
+            alt="Office Setup"
             width={500}
             height={500}
             className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"
@@ -90,15 +95,17 @@ export const workData = [
         </p>
         <div className="grid grid-cols-2 gap-4">
           <Image
-            src="https://assets.aceternity.com/templates/startup-1.webp"
-            alt="Startup Template"
+            src={cloudinaryUrl("v1743940842/office/1711806601785_ssgicb.jpg")}
+            alt="Champion Award Photo"
             width={500}
             height={500}
             className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"
           />
           <Image
-            src="https://assets.aceternity.com/templates/startup-2.webp"
-            alt="Startup Template"
+            src={cloudinaryUrl(
+              "v1743940842/office/WhatsApp_Image_2025-04-06_at_4.56.21_PM_lkogxo.jpg"
+            )}
+            alt="Award Celebration"
             width={500}
             height={500}
             className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"
@@ -135,15 +142,19 @@ export const workData = [
         </ul>
         <div className="grid grid-cols-2 gap-4">
           <Image
-            src="https://assets.aceternity.com/templates/startup-1.webp"
-            alt="Startup Template"
+            src={cloudinaryUrl(
+              "v1743942909/office/WhatsApp_Image_2025-04-06_at_5.53.44_PM_vywn3x.jpg"
+            )}
+            alt="Internship Photo 1"
             width={500}
             height={500}
             className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"
           />
           <Image
-            src="https://assets.aceternity.com/templates/startup-2.webp"
-            alt="Startup Template"
+            src={cloudinaryUrl(
+              "v1743942909/office/WhatsApp_Image_2025-04-06_at_5.51.24_PM_fpzrzl.jpg"
+            )}
+            alt="Internship Photo 2"
             width={500}
             height={500}
             className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"

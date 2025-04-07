@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Card,
@@ -15,23 +17,61 @@ import { Badge } from "./ui/badge";
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const [step, setStep] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const totalSteps = project.images.length;
+  const hasMultipleImages = totalSteps > 1;
+
+  // Preload all images
+  useEffect(() => {
+    project.images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [project.images]);
 
   const handleNext = () => {
-    if (step < totalSteps - 1) {
-      setStep(step + 1);
-    }
+    setStep((prevStep) => {
+      const nextStep = prevStep + 1;
+      if (nextStep < totalSteps) {
+        setImageLoaded(false);
+        return nextStep;
+      }
+      return prevStep;
+    });
   };
 
   const handlePrev = () => {
-    if (step > 0) {
-      setStep(step - 1);
-    }
+    setStep((prevStep) => {
+      const prev = prevStep - 1;
+      if (prev >= 0) {
+        setImageLoaded(false);
+        return prev;
+      }
+      return prevStep;
+    });
   };
+
+  const skillIcons = useMemo(
+    () =>
+      project.skills.map((SkillIcon, index) => (
+        <motion.div
+          key={index}
+          className="flex items-center p-2 bg-gray-100 dark:bg-gray-800 rounded-md"
+          whileHover={{
+            scale: 1.1,
+            backgroundColor: "#3b82f6",
+            color: "#ffffff",
+          }}
+          transition={{ duration: 0.1 }}
+        >
+          <SkillIcon size={20} className="text-primary" />
+        </motion.div>
+      )),
+    [project.skills]
+  );
 
   return (
     <Card className="shadow-lg relative dark:bg-zinc-900">
-      {/* Header Section */}
       <CardHeader className="flex justify-between items-center">
         <div>
           <CardTitle>{project.title}</CardTitle>
@@ -39,89 +79,98 @@ const ProjectCard = ({ project }: { project: Project }) => {
           <Badge className="text-xs px-3 py-1 mt-3">{project.category}</Badge>
         </div>
         <div className="flex space-x-2">
-          {/* Live Preview Button */}
-          <Button
-            className="hover:cursor-pointer"
-            variant="ghost"
-            size="icon"
-            onClick={() => window.open(project.liveUrl, "_blank")}
-          >
-            <ExternalLink size={18} />
-          </Button>
-          {/* GitHub Button */}
-          <Button
-            className="hover:cursor-pointer"
-            variant="ghost"
-            size="icon"
-            onClick={() => window.open(project.githubUrl, "_blank")}
-          >
-            <FaGithub size={18} />
-          </Button>
+          {project.liveUrl && (
+            <Button
+              className="hover:cursor-pointer"
+              variant="ghost"
+              size="icon"
+              onClick={() =>
+                window.open(project.liveUrl!, "_blank", "noopener,noreferrer")
+              }
+            >
+              <ExternalLink size={18} />
+            </Button>
+          )}
+          {project.githubUrl && (
+            <Button
+              className="hover:cursor-pointer"
+              variant="ghost"
+              size="icon"
+              onClick={() =>
+                window.open(project.githubUrl!, "_blank", "noopener,noreferrer")
+              }
+            >
+              <FaGithub size={18} />
+            </Button>
+          )}
         </div>
       </CardHeader>
 
-      {/* Image Carousel with Pop-Out Animation */}
       <CardContent className="space-y-4">
-        <div className="relative w-full h-48 overflow-hidden flex justify-center items-center">
+        <div
+          className={`relative w-full ${
+            project.category === "Mobile Application"
+              ? "aspect-[9/16]"
+              : "aspect-[16/9]"
+          } overflow-hidden flex justify-center items-center bg-zinc-100 dark:bg-zinc-800 rounded-lg`}
+        >
           <AnimatePresence mode="wait">
             <motion.img
-              key={step}
+              key={project.images[step]}
               src={project.images[step]}
               alt={`Step ${step + 1}`}
-              className="w-full h-full object-cover rounded-lg absolute"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.1 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className={`absolute w-full h-full rounded-lg transition duration-200 ${
+                project.category === "Mobile Application"
+                  ? "object-contain"
+                  : "object-cover"
+              }`}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={{
+                filter: imageLoaded ? "none" : "blur(5px)",
+                transition: "filter 0.3s ease",
+              }}
+              onLoad={() => setImageLoaded(true)}
             />
           </AnimatePresence>
         </div>
 
-        {/* Navigation Section */}
-        <div className="flex justify-between items-center">
-          <Button variant="outline" onClick={handlePrev} disabled={step === 0}>
-            <ArrowLeft className="mr-2" size={16} /> Prev
-          </Button>
-
-          <div className="flex space-x-1.5">
-            {project.images.map((_, index) => (
-              <motion.div
-                key={index}
-                className={`h-2 w-2 rounded-full ${
-                  index === step ? "bg-primary" : "bg-gray-300"
-                }`}
-                animate={{ scale: index === step ? 1.3 : 1 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              />
-            ))}
-          </div>
-
-          <Button
-            variant="outline"
-            onClick={handleNext}
-            disabled={step === totalSteps - 1}
-          >
-            Next <ArrowRight className="ml-2" size={16} />
-          </Button>
-        </div>
-
-        {/* Skills Section with Hover Animation */}
-        <div className="flex flex-wrap gap-2 mt-4">
-          {project.skills.map((SkillIcon, index) => (
-            <motion.div
-              key={index}
-              className="flex items-center p-2 bg-gray-100 dark:bg-gray-800 rounded-md"
-              whileHover={{
-                scale: 1.1,
-                backgroundColor: "#3b82f6",
-                color: "#ffffff",
-              }}
-              transition={{ duration: 0.1 }}
+        {/* Navigation buttons and dots */}
+        {hasMultipleImages && (
+          <div className="flex justify-between items-center">
+            <Button
+              variant="outline"
+              onClick={handlePrev}
+              disabled={step === 0}
             >
-              <SkillIcon size={20} className="text-primary" />
-            </motion.div>
-          ))}
-        </div>
+              <ArrowLeft className="mr-2" size={16} /> Prev
+            </Button>
+
+            <div className="flex space-x-1.5">
+              {project.images.map((_, index) => (
+                <motion.div
+                  key={index}
+                  className={`h-2 w-2 rounded-full ${
+                    index === step ? "bg-primary" : "bg-gray-300"
+                  }`}
+                  animate={{ scale: index === step ? 1.3 : 1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                />
+              ))}
+            </div>
+
+            <Button
+              variant="outline"
+              onClick={handleNext}
+              disabled={step === totalSteps - 1}
+            >
+              Next <ArrowRight className="ml-2" size={16} />
+            </Button>
+          </div>
+        )}
+
+        {/* Skills */}
+        <div className="flex flex-wrap gap-2 mt-4">{skillIcons}</div>
       </CardContent>
     </Card>
   );

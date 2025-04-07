@@ -37,7 +37,7 @@ const TestimonialCard = ({
               <Image
                 height={100}
                 width={100}
-                src={testimonial.image}
+                src={testimonial.url}
                 alt={testimonial.name}
                 className="rounded-full"
               />
@@ -64,10 +64,9 @@ const TestimonialCard = ({
 
           {/* Company & Designation */}
           <div>
-            <p className="text-xs text-neutral-500">
-              {testimonial.designation} @{" "}
-              <span className="font-semibold">{testimonial.company}</span>
-            </p>
+            <span className="text-xs text-neutral-500">
+              {testimonial.company}
+            </span>
           </div>
         </CardContent>
       </Card>
