@@ -32,17 +32,15 @@ const TestimonialCard = ({
           <motion.div
             whileHover={{ scale: 1.1, rotate: 2 }}
             transition={{ type: "spring", stiffness: 200 }}
+            className="w-24 h-24 rounded-full overflow-hidden"
           >
-            <Avatar className="w-16 h-16">
-              <Image
-                height={100}
-                width={100}
-                src={testimonial.url}
-                alt={testimonial.name}
-                className="rounded-full"
-              />
-              <AvatarFallback>{testimonial.name}</AvatarFallback>
-            </Avatar>
+            <Image
+              src={testimonial.url}
+              alt={testimonial.name}
+              width={96}
+              height={96}
+              className="w-full h-full object-cover"
+            />
           </motion.div>
 
           {/* Name & Role */}
@@ -54,17 +52,13 @@ const TestimonialCard = ({
           </div>
 
           {/* Message / Feedback */}
-          <motion.p
-            className="text-sm text-gray-600 dark:text-gray-300 italic px-4"
-            whileHover={{ scale: 1.05, color: "#3b82f6" }}
-            transition={{ duration: 0.2 }}
-          >
+          <motion.p className="text-sm text-gray-600 dark:text-gray-300 italic px-4">
             "{testimonial.message}"
           </motion.p>
 
           {/* Company & Designation */}
           <div>
-            <span className="text-xs text-neutral-500">
+            <span className="text-xs text-neutral-600">
               {testimonial.company}
             </span>
           </div>

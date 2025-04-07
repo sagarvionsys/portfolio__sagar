@@ -39,7 +39,7 @@ export const testimonials = [
       "v1743847745/users/WhatsApp_Image_2025-04-05_at_2.44.55_PM_xsk7ak.jpg"
     ),
     message:
-      "Sagar's communication and problem-solving skills make him an asset to any team. He adds value wherever he goes.",
+      "Sagar's excellent communication and sharp problem-solving skills make him an asset to any team. He consistently adds value wherever he goes.",
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ export const testimonials = [
     company: "Vionsys IT Solution India Pvt. Ltd",
     url: cloudinaryUrl("v1743841303/users/1728895563351_mxf3mj.jpg"),
     message:
-      "I've seen Sagar grow tremendously. His ability to adapt and thrive is remarkable and truly commendable in any professional setting.",
+      "I've seen Sagar grow tremendously. His ability to adapt is remarkable and truly commendable in any professional setting.",
   },
   {
     id: 5,
@@ -59,7 +59,7 @@ export const testimonials = [
       "v1743840936/users/WhatsApp_Image_2025-04-05_at_11.55.46_AM_gao3yq.jpg"
     ),
     message:
-      "Sagar brings great energy to any project. His coding skills and logical thinking are impressive and always on point.",
+      "Sagar brings great energy to any project. His coding skills and logical thinking are impressive, reliable, and always on point.",
   },
   {
     id: 7,
@@ -70,7 +70,7 @@ export const testimonials = [
       "v1743840917/users/WhatsApp_Image_2025-04-05_at_1.19.53_PM_aadfi1.jpg"
     ),
     message:
-      "It's rare to find someone as dedicated and detail-oriented as Sagar. Highly recommended for any technical team or project.",
+      "It's rare to find someone as dedicated and detail-oriented as Sagar. Highly recommended for any project.",
   },
   {
     id: 8,
@@ -138,7 +138,7 @@ export const testimonials = [
   },
   {
     id: 14,
-    name: "Yash",
+    name: "Yash Zore",
     role: "HR Executive",
     company: "Vionsys IT Solution India Pvt. Ltd",
     url: cloudinaryUrl("v1743840879/users/1639198887919_e4sims.jpg"),
@@ -151,7 +151,7 @@ export const testimonials = [
     role: "DevOps Engineer",
     company: "AB Web InfoTech",
     url: cloudinaryUrl(
-      "v1743940576/users/WhatsApp_Image_2025-04-05_at_11.13.49_PM_jnmuwo.jpg"
+      "v1744015986/users/Screenshot_20250407-142151_pjsf9j.png"
     ),
     message:
       "Sagar's consistency and hunger to improve constantly amazes me. He's going places with such positive momentum.",

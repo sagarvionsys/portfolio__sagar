@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
-import { Project } from "@/constants/projects";
+import { Project } from "@/constants/Projects";
 import { Badge } from "./ui/badge";
 
 const ProjectCard = ({ project }: { project: Project }) => {

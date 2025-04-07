@@ -3,14 +3,14 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { House, PanelsTopLeft } from "lucide-react";
-import { Project, projects } from "@/constants/projects";
 import ProjectCard from "./ProjectCard";
+import { Project, projectsList } from "@/constants/Projects";
 
 const Projects = () => {
-  const WebApps = projects.filter(
+  const WebApps = projectsList.filter(
     (project) => project.category === "Web Application"
   );
-  const MobileApps = projects.filter(
+  const MobileApps = projectsList.filter(
     (project) => project.category === "Mobile Application"
   );
 

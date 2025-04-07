@@ -16,7 +16,7 @@ export interface Project {
   skills: any[];
 }
 
-export const projects: Project[] = [
+export const projectsList: Project[] = [
   {
     title: "Lighteroom",
     description: "A platform for licensing and purchasing professional images.",
