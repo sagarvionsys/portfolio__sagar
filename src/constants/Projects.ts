@@ -1,5 +1,25 @@
 import { BASE } from "@/lib/cloudinary";
-import { SiReact, SiNextdotjs, SiTailwindcss } from "react-icons/si";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiTypescript,
+  SiRazorpay,
+  SiDocker,
+  SiVercel,
+  SiPrisma,
+  SiMongodb,
+  SiFirebase,
+  SiExpress,
+  SiJsonwebtokens,
+  SiExpo,
+  SiReactrouter,
+  SiOpenai,
+  SiRedux,
+} from "react-icons/si";
+import { SiAuth0 } from "react-icons/si";
+import { SiShadcnui } from "react-icons/si";
+import { SiSupabase } from "react-icons/si";
 
 export type ProjectCategory =
   | "Web Application"
@@ -26,14 +46,22 @@ export const projectsList: Project[] = [
       `${BASE}/v1743841164/projects/Screenshot_2025-03-01_183537_alkfn5.png`,
       `${BASE}/v1743841140/projects/Screenshot_2025-03-01_183929_ecrsdc.png`,
       `${BASE}/v1743841126/projects/Screenshot_2025-03-01_183652_p9t23v.png`,
-      // `${BASE}/v1743841099/projects/Screenshot_2025-03-01_183604_ljymlm.png`,
     ],
     liveUrl: "https://lighteroom.com",
     category: "Web Application",
     githubUrl: "https://github.com/your-repo/lighteroom",
-    skills: [SiReact, SiNextdotjs, SiTailwindcss],
+    skills: [
+      SiNextdotjs,
+      SiTailwindcss,
+      SiTypescript,
+      SiRazorpay,
+      SiDocker,
+      SiVercel,
+      SiAuth0,
+      SiPrisma,
+      SiMongodb,
+    ],
   },
-
   {
     title: "IntelliicPDF",
     description: "Smart PDF extraction tool for structured document insights.",
@@ -46,7 +74,16 @@ export const projectsList: Project[] = [
     liveUrl: "https://intelliicpdf.com",
     category: "Web Application",
     githubUrl: "https://github.com/your-repo/intelliicpdf",
-    skills: [SiReact, SiNextdotjs, SiTailwindcss],
+    skills: [
+      SiTypescript,
+      SiNextdotjs,
+      SiShadcnui,
+      SiAuth0,
+      SiVercel,
+      SiRazorpay,
+      SiPrisma,
+      SiMongodb,
+    ],
   },
   {
     title: "Netflix Clone",
@@ -61,7 +98,7 @@ export const projectsList: Project[] = [
     liveUrl: "https://netflix-clone.com",
     category: "Web Application",
     githubUrl: "https://github.com/your-repo/netflix",
-    skills: [SiReact, SiNextdotjs, SiTailwindcss],
+    skills: [SiReact, SiRedux, SiFirebase, SiExpress, SiTailwindcss],
   },
   {
     title: "ChatGPT Clone",
@@ -76,7 +113,16 @@ export const projectsList: Project[] = [
     liveUrl: "https://chatgpt-clone.com",
     category: "Web Application",
     githubUrl: "https://github.com/your-repo/chatgpt-clone",
-    skills: [SiReact, SiNextdotjs, SiTailwindcss],
+    skills: [
+      SiReact,
+      SiRedux,
+      SiFirebase,
+      SiExpress,
+      SiTailwindcss,
+      SiOpenai,
+      SiJsonwebtokens,
+      SiReactrouter,
+    ],
   },
   {
     title: "MeTube",
@@ -90,12 +136,12 @@ export const projectsList: Project[] = [
     liveUrl: "https://metube-app.com",
     category: "Mobile Application",
     githubUrl: "https://github.com/your-repo/metube",
-    skills: [SiReact, SiNextdotjs, SiTailwindcss],
+    skills: [SiExpo, SiTailwindcss, SiSupabase],
   },
   {
     title: "SnapWalls",
     description:
-      "A beautiful wallpaper app built with React Native and Cloudinary.",
+      "A beautiful wallpaper app built with Expo, Tailwind, and Supabase.",
     images: [
       `${BASE}/v1744001927/projects/Screenshot_20250407-101957_fhmtoa.png`,
       `${BASE}/v1744001926/projects/Screenshot_20250407-102002_crh58f.png`,
@@ -106,6 +152,6 @@ export const projectsList: Project[] = [
     liveUrl: "https://snapwalls.com",
     category: "Mobile Application",
     githubUrl: "https://github.com/your-repo/snapwalls",
-    skills: [SiReact, SiTailwindcss],
+    skills: [SiExpo, SiTailwindcss, SiSupabase],
   },
 ];

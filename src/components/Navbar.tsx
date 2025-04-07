@@ -33,6 +33,10 @@ const Navbar = () => {
     },
   };
 
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <nav className="bg-transparent fixed w-full pt-6 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,11 +84,11 @@ const Navbar = () => {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="absolute top-20 left-0 h-screen right-0 bg-background/95 backdrop-blur-lg shadow-lg md:hidden"
+            className="absolute top-0 left-0 h-screen right-0 bg-background/95 backdrop-blur-lg shadow-lg md:hidden"
           >
-            <div className="px-4 pt-20 pb-6 space-y-3 flex flex-col">
+            <div className="px-4 pt-20 pb-6 space-y-6 flex flex-col">
               {link.map(({ href, label }) => (
-                <Button variant="ghost" key={label}>
+                <Button variant="ghost" key={label} onClick={handleLinkClick}>
                   <Link className="text-xl" href={href}>
                     {label}
                   </Link>

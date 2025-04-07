@@ -151,7 +151,7 @@ export const testimonials = [
     role: "DevOps Engineer",
     company: "AB Web InfoTech",
     url: cloudinaryUrl(
-      "v1744015986/users/Screenshot_20250407-142151_pjsf9j.png"
+      "/v1744030857/users/Screenshot_20250407-183001_2_m1wfmm.png"
     ),
     message:
       "Sagar's consistency and hunger to improve constantly amazes me. He's going places with such positive momentum.",

@@ -14,6 +14,7 @@ import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { Project } from "@/constants/Projects";
 import { Badge } from "./ui/badge";
+import Link from "next/link";
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const [step, setStep] = useState(0);
@@ -51,57 +52,34 @@ const ProjectCard = ({ project }: { project: Project }) => {
     });
   };
 
-  const skillIcons = useMemo(
-    () =>
-      project.skills.map((SkillIcon, index) => (
-        <motion.div
-          key={index}
-          className="flex items-center p-2 bg-gray-100 dark:bg-gray-800 rounded-md"
-          whileHover={{
-            scale: 1.1,
-            backgroundColor: "#3b82f6",
-            color: "#ffffff",
-          }}
-          transition={{ duration: 0.1 }}
-        >
-          <SkillIcon size={20} className="text-primary" />
-        </motion.div>
-      )),
-    [project.skills]
-  );
+  const skillIcons = () =>
+    project.skills.map((SkillIcon, index) => (
+      <div
+        key={index}
+        className="flex items-center p-2 bg-gray-100 dark:bg-gray-800 rounded-md"
+      >
+        <SkillIcon size={20} className="text-primary" />
+      </div>
+    ));
 
   return (
-    <Card className="shadow-lg relative dark:bg-zinc-900">
-      <CardHeader className="flex justify-between items-center">
-        <div>
+    <Card className="shadow-lg relative dark:bg-zinc -900">
+      <CardHeader className="flex gap-2 justify-between items-center">
+        <div className="space-y-2">
           <CardTitle>{project.title}</CardTitle>
           <CardDescription>{project.description}</CardDescription>
           <Badge className="text-xs px-3 py-1 mt-3">{project.category}</Badge>
         </div>
-        <div className="flex space-x-2">
+        <div className="flex gap-2 items-center">
           {project.liveUrl && (
-            <Button
-              className="hover:cursor-pointer"
-              variant="ghost"
-              size="icon"
-              onClick={() =>
-                window.open(project.liveUrl!, "_blank", "noopener,noreferrer")
-              }
-            >
+            <Link href={project.liveUrl} className="hover:cursor-pointer">
               <ExternalLink size={18} />
-            </Button>
+            </Link>
           )}
           {project.githubUrl && (
-            <Button
-              className="hover:cursor-pointer"
-              variant="ghost"
-              size="icon"
-              onClick={() =>
-                window.open(project.githubUrl!, "_blank", "noopener,noreferrer")
-              }
-            >
+            <Link href={project.githubUrl} className="hover:cursor-pointer">
               <FaGithub size={18} />
-            </Button>
+            </Link>
           )}
         </div>
       </CardHeader>
@@ -170,7 +148,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         )}
 
         {/* Skills */}
-        <div className="flex flex-wrap gap-2 mt-4">{skillIcons}</div>
+        <div className="flex flex-wrap gap-2 mt-4">{skillIcons()}</div>
       </CardContent>
     </Card>
   );
