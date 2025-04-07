@@ -1,5 +1,4 @@
 export const how_to_initialize_shadcn_in_react = `
-  # How to Initialize a React Project Using Vite and shadcn/ui
   
   In this comprehensive guide, we'll walk through the process of setting up a modern React project using Vite as our build tool and shadcn/ui for beautiful, accessible components.
   

@@ -19,20 +19,20 @@ export default function CodeBlock({
     try {
       await navigator.clipboard.writeText(code);
       setCopiedCode(code);
-      setTimeout(() => setCopiedCode(null), 2000);
+      setTimeout(() => setCopiedCode(null), 1000);
     } catch (err) {
       console.error("Copy failed", err);
     }
   };
 
   return (
-    <div className="relative rounded-lg overflow-hidden shadow-md bg-black mt-4">
-      <div className="absolute top-3 right-3">
+    <div className="relative rounded-lg overflow-hidden shadow-xl bg-[#181818] mt-6 p-4 border border-transparent hover:border-gray-700 transition-all">
+      <div className="absolute top-4 right-4 z-10">
         <Button
           variant="ghost"
           size="icon"
           onClick={handleCopyCode}
-          className="hover:bg-gray-800 rounded-md p-2"
+          className="hover:bg-gray-800 rounded-md p-2 transition-colors duration-200 hover:cursor-pointer"
         >
           {copiedCode ? (
             <Check className="h-5 w-5 text-green-500" />
@@ -46,15 +46,26 @@ export default function CodeBlock({
         language={language}
         style={dracula}
         customStyle={{
-          backgroundColor: "#0D0D0D",
+          backgroundColor: "#181818",
           borderRadius: "8px",
           padding: "20px",
           fontSize: "14px",
+          lineHeight: "1.5",
+          overflow: "auto",
         }}
         PreTag="div"
       >
         {code}
       </SyntaxHighlighter>
+
+      {/* Tooltip */}
+      <div
+        className={`absolute bottom-2 right-3 text-sm ${
+          copiedCode ? "text-green-500" : "text-gray-400"
+        } transition-all`}
+      >
+        {copiedCode ? "Copied!" : "Click to Copy"}
+      </div>
     </div>
   );
 }
