@@ -113,7 +113,7 @@ export function BackgroundPaths({
           >
             <Button
               variant="ghost"
-              className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md shadow-lg  hover:cursor-pointer hover:shadow-xl transition-shadow duration-300 
+              className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md hover:cursor-pointer hover:shadow-xl transition-shadow duration-300 
                             bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
                             text-black dark:text-white 
                             group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
@@ -121,12 +121,6 @@ export function BackgroundPaths({
             >
               <span className="opacity-90 group-hover:opacity-100 transition-opacity">
                 Download Resume
-              </span>
-              <span
-                className="ml-3 opacity-70 group-hover:opacity-100 group-hover:translate-x-1.5 
-                                transition-all duration-300"
-              >
-                →
               </span>
             </Button>
           </div>

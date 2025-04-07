@@ -129,7 +129,7 @@ const SkeletonTwo = () => {
 export const SkeletonThree = () => {
   const router = useRouter();
   return (
-    <div className="bg-white w-full flex flex-col justify-center min-h-[280px] dark:bg-gray-800 dark:text-white items-start relative group rounded-[20px]">
+    <div className="bg-white w-full flex flex-col justify-center min-h-[280px] dark:bg-black dark:text-white items-start relative group rounded-[20px]">
       <div className="p-6 w-full">
         {/* Blog Icon */}
         <div className="w-10 h-10 flex items-center justify-center absolute inset-x-0 top-0 ml-6 mt-4 text-blue-600 text-4xl">

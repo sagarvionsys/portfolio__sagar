@@ -100,7 +100,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               className={`absolute w-full h-full rounded-lg transition duration-200 ${
                 project.category === "Mobile Application"
                   ? "object-contain"
-                  : "object-cover"
+                  : "object-fit"
               }`}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
