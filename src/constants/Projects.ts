@@ -18,7 +18,7 @@ export interface Project {
 
 export const projectsList: Project[] = [
   {
-    title: "Lighteroom",
+    title: "Lightroom",
     description: "A platform for licensing and purchasing professional images.",
     images: [
       `${BASE}/v1743841196/projects/Screenshot_2025-03-01_183450_dmsdn3.png`,

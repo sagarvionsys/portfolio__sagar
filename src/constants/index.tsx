@@ -141,24 +141,28 @@ export const workData = [
           </li>
         </ul>
         <div className="grid grid-cols-2 gap-4">
-          <Image
-            src={cloudinaryUrl(
-              "v1743942909/office/WhatsApp_Image_2025-04-06_at_5.53.44_PM_vywn3x.jpg"
-            )}
-            alt="Internship Photo 1"
-            width={500}
-            height={500}
-            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"
-          />
-          <Image
-            src={cloudinaryUrl(
-              "v1743942909/office/WhatsApp_Image_2025-04-06_at_5.51.24_PM_fpzrzl.jpg"
-            )}
-            alt="Internship Photo 2"
-            width={500}
-            height={500}
-            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"
-          />
+          <div className="h-20 md:h-44 lg:h-60 w-full">
+            <Image
+              src={cloudinaryUrl(
+                "v1743942909/office/WhatsApp_Image_2025-04-06_at_5.53.44_PM_vywn3x.jpg"
+              )}
+              alt="Internship Photo 1"
+              width={500}
+              height={500}
+              className="rounded-lg w-full h-full object-cover object-[center_30%]"
+            />
+          </div>
+          <div className="h-20 md:h-44 lg:h-60 w-full">
+            <Image
+              src={cloudinaryUrl(
+                "v1743942909/office/WhatsApp_Image_2025-04-06_at_5.51.24_PM_fpzrzl.jpg"
+              )}
+              alt="Internship Photo 2"
+              width={500}
+              height={500}
+              className="rounded-lg w-full h-full object-cover object-[center_30%]"
+            />
+          </div>
         </div>
       </div>
     ),

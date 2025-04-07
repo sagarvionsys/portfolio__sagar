@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import { useAnimate } from "framer-motion";
 import { Button, buttonVariants } from "@/components/ui/button";
 
@@ -12,75 +13,65 @@ import {
 } from "@/components/ui/highlighter";
 
 import {
-  IconCode,
-  IconBrandReact,
-  IconBrandNodejs,
-  IconBrandTypescript,
   IconBrandAws,
   IconBrandGithub,
-  IconTrophy,
-  IconBrandNextjs,
-  IconBrandRedux,
   IconRocket,
-  IconBrain,
-  IconDatabase,
-  IconCloud,
-  IconDeviceMobile,
-  IconBrandGraphql,
   IconBrandDocker,
   IconBrandVercel,
 } from "@tabler/icons-react";
-import { motion } from "motion/react";
+
+import {
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiRedux,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiFirebase,
+  SiReactquery,
+  SiMongodb,
+  SiPostman,
+  SiNodedotjs,
+  SiExpress,
+  SiMongoose,
+  SiPrisma,
+  SiGraphql,
+  SiPostgresql,
+  SiExpo,
+} from "react-icons/si";
+import { FaRegNewspaper } from "react-icons/fa";
+
 import { SiNetlify } from "react-icons/si";
 import React, { useEffect } from "react";
-import { Mail } from "lucide-react";
+import { ArrowRightIcon, Mail } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import info from "@/constants/info";
+import { useRouter } from "next/navigation";
 
 const SkeletonOne = () => {
   const skills = [
+    // Languages
+    { id: 1, name: "JavaScript", icon: SiJavascript, color: "text-yellow-400" },
+    { id: 2, name: "TypeScript", icon: SiTypescript, color: "text-blue-600" },
+
+    { id: 3, name: "React", icon: SiReact, color: "text-blue-500" },
+    { id: 4, name: "Redux", icon: SiRedux, color: "text-purple-600" },
+    { id: 6, name: "Next.js", icon: SiNextdotjs, color: "text-gray-800" },
+    { id: 7, name: "Expo", icon: SiExpo, color: "text-black" },
+    { id: 19, name: "Node.js", icon: SiNodedotjs, color: "text-green-500" },
+    { id: 8, name: "Express.js", icon: SiExpress, color: "text-gray-700" },
+    { id: 9, name: "MongoDB", icon: SiMongodb, color: "text-green-600" },
+    { id: 10, name: "Mongoose", icon: SiMongoose, color: "text-red-600" },
+    { id: 11, name: "PostgreSQL", icon: SiPostgresql, color: "text-blue-700" },
+
+    { id: 13, name: "Prisma", icon: SiPrisma, color: "text-indigo-500" },
     {
-      id: 1,
-      name: "React.js",
-      icon: IconBrandReact,
-      color: "text-blue-500 dark:text-blue-400",
+      id: 14,
+      name: "TailwindCSS",
+      icon: SiTailwindcss,
+      color: "text-cyan-500",
     },
-    {
-      id: 2,
-      name: "Node.js",
-      icon: IconBrandNodejs,
-      color: "text-green-500 dark:text-green-400",
-    },
-    {
-      id: 3,
-      name: "Next.js",
-      icon: IconBrandNextjs,
-      color: "text-gray-500 dark:text-gray-300",
-    },
-    {
-      id: 4,
-      name: "TypeScript",
-      icon: IconBrandTypescript,
-      color: "text-blue-600 dark:text-blue-400",
-    },
-    {
-      id: 5,
-      name: "GraphQL",
-      icon: IconBrandGraphql,
-      color: "text-pink-500 dark:text-pink-400",
-    },
-    {
-      id: 6,
-      name: "Redux",
-      icon: IconBrandRedux,
-      color: "text-purple-600 dark:text-purple-400",
-    },
-    {
-      id: 7,
-      name: "Zustand",
-      icon: IconDatabase,
-      color: "text-orange-500 dark:text-orange-400",
-    },
+    { id: 5, name: "React Query", icon: SiReactquery, color: "text-pink-500" },
   ];
 
   return (
@@ -104,49 +95,6 @@ const SkeletonOne = () => {
 };
 
 const SkeletonTwo = () => {
-  const projects = [
-    {
-      id: 1,
-      name: "Websites",
-    },
-    {
-      id: 2,
-      name: "Web Apps",
-    },
-    {
-      id: 4,
-      name: "Mobile Apps",
-    },
-    {
-      id: 5,
-      name: "AI Apps",
-    },
-  ];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="flex flex-1 w-full h-full min-h-[6rem] bg-neutral-100 dark:bg-zinc-900 rounded-xl p-3"
-    >
-      <div className="grid sm:grid-cols-2 gap-2 w-full">
-        {projects.map(({ id, name }) => (
-          <motion.div
-            key={id}
-            whileHover={{ scale: 1.05 }}
-            className="bg-white dark:bg-neutral-800 py-3 rounded-lg justify-center flex flex-col items-center shadow-sm hover:shadow-md transition-shadow"
-          >
-            <span className="text-base font-semibold text-gray-900 dark:text-gray-100">
-              {name}
-            </span>
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-  );
-};
-
-const SkeletonThree = () => {
   const skills = [
     { id: 1, name: "AWS", icon: IconBrandAws },
     { id: 2, name: "CI/CD", icon: IconRocket },
@@ -154,6 +102,9 @@ const SkeletonThree = () => {
     { id: 4, name: "Actions", icon: IconBrandGithub },
     { id: 5, name: "Vercel", icon: IconBrandVercel },
     { id: 6, name: "Netlify", icon: SiNetlify },
+    { id: 7, name: "Postman", icon: SiPostman },
+    { id: 8, name: "Firebase", icon: SiFirebase },
+    { id: 9, name: "Graphql", icon: SiGraphql },
   ];
 
   return (
@@ -172,6 +123,40 @@ const SkeletonThree = () => {
         </div>
       </div>
     </motion.div>
+  );
+};
+
+export const SkeletonThree = () => {
+  const router = useRouter();
+  return (
+    <div className="bg-white w-full flex flex-col justify-center min-h-[280px] dark:bg-gray-800 dark:text-white items-start relative group rounded-[20px]">
+      <div className="p-6 w-full">
+        {/* Blog Icon */}
+        <div className="w-10 h-10 flex items-center justify-center absolute inset-x-0 top-0 ml-6 mt-4 text-blue-600 text-4xl">
+          <FaRegNewspaper />
+        </div>
+
+        {/* Content */}
+        <div className="mt-6 text-left w-full">
+          <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">
+            See My Latest Blogs
+          </h2>
+          <p className="text-sm text-gray-500 dark:text-gray-300">
+            Check out my latest blogs on web, app development, and trending tech
+            — full of tips, how-tos, and resources to level up your dev game.
+          </p>
+        </div>
+
+        {/* Arrow Button */}
+
+        <Button
+          onClick={() => router.push("/blogs")}
+          className="mt-4 flex items-center gap-2 hover:cursor-pointer rounded-full"
+        >
+          <ArrowRightIcon />
+        </Button>
+      </div>
+    </div>
   );
 };
 
@@ -401,22 +386,16 @@ const items = [
     className: "md:col-span-1",
   },
   {
-    title: "Project Portfolio",
-    description: (
-      <span className="text-sm">
-        A showcase of innovative and impactful projects across diverse domains
-      </span>
-    ),
-    header: <SkeletonTwo />,
-    className: "md:col-span-1",
-  },
-  {
     title: "Infrastructure & DevOps",
     description: (
       <span className="text-sm">
         Expertise in cloud architecture, scalable solutions, and CI/CD pipelines
       </span>
     ),
+    header: <SkeletonTwo />,
+    className: "md:col-span-1",
+  },
+  {
     header: <SkeletonThree />,
     className: "md:col-span-1",
   },
