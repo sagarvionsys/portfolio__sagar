@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import BlogPage from "./BlogPage";
 import { getAllBlogsFetch } from "@/lib/sitemapHelper";
 import info from "@/constants/info";
-import supabase from "@/lib/supabase";
 
 export async function generateMetadata({
   params,
@@ -10,12 +9,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const { data: articles, error } = await supabase
-    .from("blog")
-    .select("*")
-    .eq("slug", slug);
+  const allContent = getAllBlogsFetch();
+  const articles = allContent.filter((article) => article.slug === slug);
 
-  if (!articles || articles.length === 0 || error) {
+  if (!articles) {
     return {
       title: "Blog Not Found",
       description: "The requested blog post could not be found.",

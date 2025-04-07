@@ -59,6 +59,7 @@ export function BackgroundPaths({
 
   return (
     <div className="relative min-h-screen py-12 w-full flex items-center justify-center overflow-hidden bg-white dark:bg-neutral-950">
+      <h1 className="hidden">Sagar Yenkure - a Passionate Software Engineer</h1>
       <div className="absolute inset-0">
         <FloatingPaths position={1} />
         <FloatingPaths position={-1} />
@@ -71,7 +72,7 @@ export function BackgroundPaths({
           transition={{ duration: 2 }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold pb-8 tracking-tighter">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold pb-8 tracking-tighter">
             {words.map((word, wordIndex) => (
               <span key={wordIndex} className="inline-block mr-4 last:mr-0 ">
                 {word.split("").map((letter, letterIndex) => (
@@ -94,7 +95,7 @@ export function BackgroundPaths({
                 ))}
               </span>
             ))}
-          </h1>
+          </h2>
           <p
             className="text-muted-foreground text-lg mb-8 font-semibold from-neutral-900 to-neutral-700/80 
                                         dark:from-white dark:to-white"

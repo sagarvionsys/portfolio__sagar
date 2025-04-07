@@ -45,9 +45,9 @@ const TestimonialCard = ({
 
           {/* Name & Role */}
           <div className="mt-3">
-            <h4 className="text-md font-semibold text-black dark:text-white">
+            <span className="text-md font-semibold text-black dark:text-white">
               {testimonial.name}
-            </h4>
+            </span>
             <p className="text-sm text-primary">{testimonial.role}</p>
           </div>
 

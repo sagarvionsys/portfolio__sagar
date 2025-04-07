@@ -3,19 +3,15 @@ export const dynamic = "force-dynamic";
 import BlogCard from "./BlogCard";
 import { Button } from "@/components/ui/button";
 import { Article } from "@/constants/blogs";
-import supabase from "@/lib/supabase";
 import Link from "next/link";
-import { BlogCardSkeleton } from "./Skeleton";
 import ServerErrorPage from "./Error";
+import { getAllBlogsFetch } from "@/lib/sitemapHelper";
 
-const Blogs = async () => {
-  const { data: blog, error } = await supabase
-    .from("blog")
-    .select("*")
-    .range(0, 5);
+const Blogs = () => {
+  const blog = getAllBlogsFetch();
+  if (!blog) return <ServerErrorPage />;
 
-  if (!blog) return <BlogCardSkeleton />;
-  if (error) return <ServerErrorPage />;
+  const sliceBlog = blog.slice(0, 5);
 
   return (
     <section className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
@@ -30,7 +26,9 @@ const Blogs = async () => {
       </div>
       <div className="grid gap-y-10 sm:grid-cols-12 sm:gap-y-8 md:gap-y-12 lg:gap-y-16">
         {blog?.length > 0 &&
-          blog.map((post: Article) => <BlogCard key={post.id} post={post} />)}
+          sliceBlog.map((post: Article) => (
+            <BlogCard key={post.id} post={post} />
+          ))}
       </div>
 
       <div className="flex justify-center mt-3">

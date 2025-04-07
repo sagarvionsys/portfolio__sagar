@@ -1,17 +1,17 @@
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Calendar, User } from "lucide-react";
+import { Calendar, User } from "lucide-react";
 import Image from "next/image";
-import supabase from "@/lib/supabase";
 import ReactMarkdown from "react-markdown";
 import formatDateWithOrdinal from "@/hooks/useformatDateWithOrdinal";
 import ServerErrorPage from "@/components/Error";
 import RelatedBlog from "@/components/RelatedBlog";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import CodeBlock from "@/components/CodeBlock";
-import { Button } from "@/components/ui/button";
 import BackButton from "@/components/BackButton";
 import React from "react";
+import ContentList from "@/content";
+import { getAllBlogsFetch } from "@/lib/sitemapHelper";
 
 interface BlogPageProps {
   slug: string;
@@ -23,16 +23,12 @@ interface CodeProps extends React.HTMLAttributes<HTMLElement> {
   children?: React.ReactNode;
 }
 
-const BlogPage = async ({ slug }: BlogPageProps) => {
-  const { data: articles, error } = await supabase
-    .from("blog")
-    .select("*")
-    .eq("slug", slug);
+const BlogPage = ({ slug }: BlogPageProps) => {
+  const allContent = getAllBlogsFetch();
+  const articles = allContent.filter((article) => article.slug === slug);
 
-  if (error) return <ServerErrorPage />;
-  if (!articles || articles.length === 0) return <div>Loading...</div>;
-
-  const article = articles[0];
+  if (!articles || articles.length === 0) return <ServerErrorPage />;
+  const article = ContentList[0];
 
   return (
     <>

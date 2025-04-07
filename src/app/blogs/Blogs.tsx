@@ -2,15 +2,12 @@ export const dynamic = "force-dynamic";
 
 import BlogCard from "@/components/BlogCard";
 import { Article } from "@/constants/blogs";
-import supabase from "@/lib/supabase";
-import { BlogCardSkeleton } from "@/components/Skeleton";
 import ServerErrorPage from "@/components/Error";
+import { getAllBlogsFetch } from "@/lib/sitemapHelper";
 
-const blogsPage = async () => {
-  const { data: blog, error } = await supabase.from("blog").select("*");
-
-  if (!blog) return <BlogCardSkeleton />;
-  if (error) return <ServerErrorPage />;
+const blogsPage = () => {
+  const blog = getAllBlogsFetch();
+  if (!blog) return <ServerErrorPage />;
 
   return (
     <section>
