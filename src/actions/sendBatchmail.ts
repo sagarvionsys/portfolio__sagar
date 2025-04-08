@@ -4,6 +4,7 @@ import { getEmailComponent } from "@/email/getEmailComponent";
 import { redis } from "@/lib/redis";
 import { Resend } from "resend";
 
+// this function is to send batch notifications to all the subscribed emails
 const sendBatchmail = async (
   data: any,
   subject: string,

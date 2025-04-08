@@ -57,14 +57,6 @@ export default function Contact() {
         "contactUs"
       );
 
-      // Send email to the admin
-      await sendmail(
-        values,
-        info.mail,
-        "📬 New Contact Form Submission",
-        "contactUsAdmin"
-      );
-
       toast("Message Sent", {
         description:
           "Thanks for reaching out! I've received your message and will get back to you shortly.",
