@@ -8,9 +8,13 @@ import { Resend } from "resend";
 const sendBatchmail = async (
   data: any,
   subject: string,
-  templateType: string
+  templateType: string,
+  token: string
 ) => {
   try {
+    if (token !== process.env.ADMIN_SECRET)
+      throw new Error("Unauthorized attempt to send mails in batch");
+
     const emails = await redis.smembers("subscribed_emails");
 
     if (!process.env.RESEND_API_KEY)
