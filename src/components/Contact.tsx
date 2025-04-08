@@ -16,6 +16,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import sendmail from "@/actions/sendmail";
+import info from "@/constants/info";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -30,6 +34,8 @@ const formSchema = z.object({
 });
 
 export default function Contact() {
+  const [loading, setLoading] = useState<boolean>(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,8 +46,43 @@ export default function Contact() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    form.reset();
+    setLoading(true);
+
+    try {
+      // Send email to the user
+      await sendmail(
+        values,
+        values.email,
+        "Thanks for contacting me!",
+        "contactUs"
+      );
+
+      // Send email to the admin
+      await sendmail(
+        values,
+        info.mail,
+        "📬 New Contact Form Submission",
+        "contactUsAdmin"
+      );
+
+      toast("Message Sent", {
+        description:
+          "Thanks for reaching out! I've received your message and will get back to you shortly.",
+      });
+
+      form.reset();
+    } catch (error) {
+      toast("Something went wrong", {
+        description:
+          "Oops! Failed to send your message. Please try again in a moment.",
+        style: {
+          background: "red",
+          color: "white",
+        },
+      });
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -126,10 +167,8 @@ export default function Contact() {
                 className="w-full sm:w-auto flex items-center justify-center"
                 disabled={form.formState.isSubmitting}
               >
-                {form.formState.isSubmitting ? "Sending..." : "Send Message"}
-                {!form.formState.isSubmitting && (
-                  <Send className="ml-2 h-4 w-4" />
-                )}
+                {loading ? "Sending..." : "Send Message"}
+                {!loading && <Send className="ml-2 h-4 w-4" />}
               </Button>
             </form>
           </Form>

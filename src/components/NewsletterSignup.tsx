@@ -6,6 +6,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import sendmail from "@/actions/sendmail";
 import { Loader } from "lucide-react";
+import { toast } from "sonner";
 
 const NewsletterSignup: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -14,19 +15,23 @@ const NewsletterSignup: React.FC = () => {
   const subscribeHandle = async () => {
     setLoading(true);
     try {
-      const data = await sendmail(
-        email,
-        "Thanks for subscribing",
-        "subscription"
-      );
-      if (data) {
-        alert("Subscription successful! Check your email for confirmation.");
-        setEmail("");
-      } else {
-        alert("Subscription failed. Please try again.");
-      }
+      await sendmail({}, email, "Thanks for subscribing", "subscription");
+
+      toast("Subscription Successful", {
+        description:
+          "You're now subscribed! Check your inbox for confirmation.",
+      });
+
+      setEmail("");
     } catch (error) {
-      alert("Something went wrong.");
+      toast("Something went wrong", {
+        description:
+          "Oops! Failed to send your message. Please try again in a moment.",
+        style: {
+          background: "red",
+          color: "white",
+        },
+      });
     } finally {
       setLoading(false);
     }

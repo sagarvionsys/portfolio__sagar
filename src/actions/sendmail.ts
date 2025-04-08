@@ -4,15 +4,15 @@ import { getEmailComponent } from "@/email/getEmailComponent";
 import { Resend } from "resend";
 
 const sendmail = async (
+  data: any,
   email: string,
   subject: string,
   templateType: string
 ) => {
+  const reactComponent = getEmailComponent(templateType, email, data);
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     if (!resend) throw new Error("Resend API key is not set");
-
-    const reactComponent = getEmailComponent(templateType, email);
 
     const { data, error } = await resend.emails.send({
       from: "Sagar Yenkure <no-reply@sagaryenkure.pro>",

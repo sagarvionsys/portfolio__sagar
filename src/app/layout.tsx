@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -69,6 +70,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Navbar />
+            <Toaster />
             {children}
             <FooterSection />
           </ThemeProvider>

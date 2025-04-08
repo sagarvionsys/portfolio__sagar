@@ -48,7 +48,7 @@ const BlogPage = ({ slug }: BlogPageProps) => {
               <Badge className="bg-white/20 text-white text-sm px-3 py-1 self-start">
                 {article.label}
               </Badge>
-              <h1 className="text-3xl md:text-4xl font-extrabold mt-4 leading-snug text-white">
+              <h1 className="text-3xl md:text-4xl font-bold mt-4 leading-snug text-white">
                 {article.title}
               </h1>
               <div className="flex items-center gap-4 text-gray-300 text-sm mt-2">
