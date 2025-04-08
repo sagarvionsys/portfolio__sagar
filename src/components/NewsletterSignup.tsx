@@ -23,13 +23,11 @@ const NewsletterSignup: React.FC = () => {
       });
 
       setEmail("");
-    } catch (error) {
-      toast("Something went wrong", {
-        description:
-          "Oops! Failed to send your message. Please try again in a moment.",
+    } catch (error: any) {
+      toast(error.message, {
         style: {
           background: "red",
-          color: "white",
+          color: "black",
         },
       });
     } finally {
@@ -55,7 +53,7 @@ const NewsletterSignup: React.FC = () => {
       <Button
         disabled={!email || loading}
         onClick={subscribeHandle}
-        className="mt-3 w-full flex items-center justify-center gap-2"
+        className="mt-3 w-full flex items-center justify-center gap-2 hover:cursor-pointer"
       >
         {loading ? <Loader size={18} color="#fff" /> : "Subscribe"}
       </Button>

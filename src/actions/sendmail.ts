@@ -1,6 +1,7 @@
 "use server";
 
 import { getEmailComponent } from "@/email/getEmailComponent";
+import { redis } from "@/lib/redis";
 import { Resend } from "resend";
 
 const sendmail = async (
@@ -9,12 +10,26 @@ const sendmail = async (
   subject: string,
   templateType: string
 ) => {
-  const reactComponent = getEmailComponent(templateType, email, data);
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    if (!resend) throw new Error("Resend API key is not set");
+    const isAlreadySubscribed = await redis.sismember(
+      "subscribed_emails",
+      email
+    );
 
-    const { data, error } = await resend.emails.send({
+    // to get all subscribed members email
+    // const emails = await redis.smembers("subscribed_emails");
+
+    if (isAlreadySubscribed) throw new Error("Email is already subscribed");
+
+    await redis.sadd("subscribed_emails", email);
+
+    if (!process.env.RESEND_API_KEY)
+      throw new Error("Resend API key is not set");
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const reactComponent = getEmailComponent(templateType, email, data);
+
+    const { data: result, error } = await resend.emails.send({
       from: "Sagar Yenkure <no-reply@sagaryenkure.pro>",
       to: [email],
       subject,
@@ -22,10 +37,10 @@ const sendmail = async (
     });
 
     if (error) throw new Error(error.message);
-    return data;
+
+    return result;
   } catch (error) {
-    console.error("Error sending email:", error);
-    return false;
+    throw error;
   }
 };
 

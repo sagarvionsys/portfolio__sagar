@@ -5,6 +5,7 @@ import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { toast } from "sonner";
 
 export default function CodeBlock({
   code,
@@ -21,7 +22,12 @@ export default function CodeBlock({
       setCopiedCode(code);
       setTimeout(() => setCopiedCode(null), 1000);
     } catch (err) {
-      console.error("Copy failed", err);
+      toast("Error while copying code, please try again.", {
+        style: {
+          background: "red",
+          color: "black",
+        },
+      });
     }
   };
 
