@@ -47,6 +47,7 @@ import { ArrowRightIcon, Mail } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import info from "@/constants/info";
 import { useRouter } from "next/navigation";
+import BookingCal from "./BookingCal";
 
 const SkeletonOne = () => {
   const skills = [
@@ -281,10 +282,7 @@ const SkeletonFour = () => {
                       Feel free to reach out to me!
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <Link href={"https://google.com"} target="_blank">
-                        {/* TODO --- add calendly meeting */}
-                        <Button>Book a call</Button>
-                      </Link>
+                      <BookingCal />
                       <Link
                         href={`mailto:${info.mail}`}
                         target="_blank"
