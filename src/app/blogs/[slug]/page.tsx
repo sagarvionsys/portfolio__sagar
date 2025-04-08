@@ -10,7 +10,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const allContent = getAllBlogsFetch();
-  const articles = allContent.filter((article) => article.slug === slug);
+  const articles = allContent.filter((article) => article?.slug === slug);
 
   if (!articles) {
     return {
@@ -23,14 +23,14 @@ export async function generateMetadata({
   const description = article?.summary;
 
   return {
-    title: article.title,
+    title: article?.title,
     description,
     keywords: article.tags,
     publisher: "Sagar Yenkure",
     creator: "Sagar Yenkure",
 
     openGraph: {
-      title: article.title,
+      title: article?.title,
       description,
       type: "article",
       url: `${info.HOST_URL}/blogs/${article.slug}`,

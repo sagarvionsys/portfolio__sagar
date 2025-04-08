@@ -1,4 +1,4 @@
-export const how_to_initialize_shadcn_in_react = `
+const how_to_initialize_shadcn_in_react = `
   
   In this comprehensive guide, we'll walk through the process of setting up a modern React project using Vite as our build tool and shadcn/ui for beautiful, accessible components.
   
@@ -35,7 +35,7 @@ export const how_to_initialize_shadcn_in_react = `
   npx tailwindcss init -p
   \`\`\`
   
-  Update your \`tailwind.config.js\`:
+  Update your tailwind.config.js:
   
   \`\`\`javascript
   /** @type {import('tailwindcss').Config} */
@@ -51,7 +51,7 @@ export const how_to_initialize_shadcn_in_react = `
   }
   \`\`\`
   
-  Add Tailwind directives to your \`./src/index.css\`:
+  Add Tailwind directives to your ./src/index.css
   
   \`\`\`css
   @tailwind base;
@@ -61,7 +61,7 @@ export const how_to_initialize_shadcn_in_react = `
   
   ## Step 4: Install and Configure shadcn/ui
   
-  Install shadcn/ui CLI:
+  Install shadcn/ui CLI
   
   \`\`\`bash
   npm install -D @shadcn/ui

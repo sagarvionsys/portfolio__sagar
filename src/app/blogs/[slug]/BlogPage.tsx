@@ -10,7 +10,6 @@ import NewsletterSignup from "@/components/NewsletterSignup";
 import CodeBlock from "@/components/CodeBlock";
 import BackButton from "@/components/BackButton";
 import React from "react";
-import ContentList from "@/content";
 import { getAllBlogsFetch } from "@/lib/sitemapHelper";
 
 interface BlogPageProps {
@@ -25,10 +24,9 @@ interface CodeProps extends React.HTMLAttributes<HTMLElement> {
 
 const BlogPage = ({ slug }: BlogPageProps) => {
   const allContent = getAllBlogsFetch();
-  const articles = allContent.filter((article) => article.slug === slug);
-
+  const articles = allContent?.filter((article) => article?.slug === slug);
   if (!articles || articles.length === 0) return <ServerErrorPage />;
-  const article = ContentList[0];
+  const article = articles[0];
 
   return (
     <>

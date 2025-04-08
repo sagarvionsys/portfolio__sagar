@@ -1,4 +1,5 @@
 import how_to_initialize_shadcn_in_react from "./how-to-initilize-shadcn-in-react";
+import how_to_use_redux_in_nextjs_with_typescript from "./how-to-use-redux-in-nextjs-with-typescript";
 
 export interface Article {
   id: string;
@@ -14,6 +15,7 @@ export interface Article {
 }
 
 const ContentList = [
+  // How to Initialize a React Project Using Vite and shadcn/ui
   {
     id: "1",
     title: "How to Initialize a React Project Using Vite and shadcn/ui",
@@ -27,6 +29,21 @@ const ContentList = [
       "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop",
     tags: ["React", "Vite", "shadcn/ui", "TypeScript", "Tutorial"],
     content: how_to_initialize_shadcn_in_react,
+  },
+  // How to use Redux in Next.js with TypeScript
+  {
+    id: "2",
+    title: "How to use Redux in Next.js with TypeScript",
+    summary:
+      "Learn how to integrate Redux into a Next.js project using TypeScript. This guide covers setup, folder structure, best practices, and common patterns.",
+    label: "Tutorial",
+    slug: "how-to-use-redux-in-nextjs-with-typescript",
+    author: "Sagar Yenkure",
+    published: "2024-03-20",
+    image:
+      "https://images.unsplash.com/photo-1643116774075-acc00caa9a7b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    tags: ["Next.js", "Redux", "TypeScript", "State Management", "Tutorial"],
+    content: how_to_use_redux_in_nextjs_with_typescript,
   },
 ];
 
