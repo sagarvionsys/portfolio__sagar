@@ -16,7 +16,7 @@ const RelatedBlog = () => {
           blogs.map((post) => (
             <li key={post.slug} className="group">
               <Link
-                href={`/blog/${post.slug}`}
+                href={`/blogs/${post.slug}`}
                 className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
               >
                 {post.title}

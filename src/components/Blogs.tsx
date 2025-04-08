@@ -11,7 +11,7 @@ const Blogs = () => {
   const blog = getAllBlogsFetch();
   if (!blog) return <ServerErrorPage />;
 
-  const sliceBlog = blog.slice(0, 4);
+  const sliceBlog = blog.slice(0, 2);
 
   return (
     <section className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
