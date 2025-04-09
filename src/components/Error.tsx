@@ -9,8 +9,8 @@ const ServerErrorPage = () => {
       <AlertTriangle className="mb-6 h-12 w-12 text-red-500" />
       <h1 className="text-2xl font-bold md:text-4xl">Something went wrong</h1>
       <p className="mt-4 text-muted-foreground max-w-md">
-        We're experiencing a server issue with blogs. Please try refreshing the
-        page or come back later.
+        We&apos;re experiencing a server issue with blogs. Please try refreshing
+        the page or come back later.
       </p>
       <div className="mt-6 flex gap-4">
         <Link href="/" className="hover:cursor-pointer">

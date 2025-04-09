@@ -12,7 +12,7 @@ export const workData = [
         <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
           This recognition was given for our exceptional performance, strong
           collaboration, and the achievement of important project milestones,
-          which greatly contributed to the company's success.
+          which greatly contributed to the company&apos;s success.
         </p>
         <div className="grid grid-cols-2 gap-4">
           <Image

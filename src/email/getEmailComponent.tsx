@@ -3,6 +3,7 @@ import BlogNotificationEmail from "./BlogNotificationEmail";
 import { ContactUsEmail } from "./ContactUsEmail";
 import { SubscriptionEmail } from "./SubscriptionEmail";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getEmailComponent = (type: string, email: string, data: any) => {
   switch (type) {
     case "subscription":

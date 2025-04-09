@@ -21,7 +21,8 @@ export default function CodeBlock({
       await navigator.clipboard.writeText(code);
       setCopiedCode(code);
       setTimeout(() => setCopiedCode(null), 1000);
-    } catch (err) {
+    } catch (error) {
+      console.log(error);
       toast("Error while copying code, please try again.", {
         style: {
           background: "red",

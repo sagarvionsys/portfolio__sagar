@@ -13,13 +13,13 @@ export const ContactUsEmail: React.FC<SubscriptionEmailProps> = ({ email }) => (
     <p className="text-base text-gray-700 mt-4">Hi {email},</p>
 
     <p className="text-base text-gray-700 mt-2">
-      Thanks for contacting me! I've received your message and will get back to
-      you shortly.
+      Thanks for contacting me! I&apos;ve received your message and will get
+      back to you shortly.
     </p>
 
     <p className="text-base text-gray-700 mt-2">
-      In the meantime, if you'd like to connect directly, you can book a meeting
-      using the link below:
+      In the meantime, if you&apos;d like to connect directly, you can book a
+      meeting using the link below:
     </p>
 
     <div className="mt-6 mb-4">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Card,
@@ -15,6 +15,7 @@ import { FaGithub } from "react-icons/fa";
 import { Project } from "@/constants/Projects";
 import { Badge } from "./ui/badge";
 import Link from "next/link";
+import { IconType } from "react-icons/lib";
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const [step, setStep] = useState(0);
@@ -53,7 +54,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
   };
 
   const skillIcons = () =>
-    project.skills.map((SkillIcon, index) => (
+    project.skills?.map((SkillIcon: IconType, index: number) => (
       <div
         key={index}
         className="flex items-center p-2 bg-gray-100 dark:bg-gray-800 rounded-md"

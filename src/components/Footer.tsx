@@ -1,4 +1,4 @@
-import { Code2, X } from "lucide-react";
+import { Code2 } from "lucide-react";
 import { Footer } from "./ui/footer";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";

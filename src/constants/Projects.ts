@@ -1,4 +1,5 @@
 import { BASE } from "@/lib/cloudinary";
+import { IconType } from "react-icons/lib";
 import {
   SiReact,
   SiNextdotjs,
@@ -33,7 +34,7 @@ export interface Project {
   liveUrl: string;
   category: ProjectCategory;
   githubUrl: string;
-  skills: any[];
+  skills: IconType[];
 }
 
 export const projectsList: Project[] = [

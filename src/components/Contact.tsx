@@ -18,7 +18,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import sendmail from "@/actions/sendmail";
-import info from "@/constants/info";
 import { toast } from "sonner";
 
 const formSchema = z.object({
@@ -64,6 +63,7 @@ export default function Contact() {
 
       form.reset();
     } catch (error) {
+      console.error(error);
       toast("Something went wrong", {
         description:
           "Oops! Failed to send your message. Please try again in a moment.",
@@ -90,8 +90,8 @@ export default function Contact() {
           Get in Touch with Us! 📬
         </h2>
         <p className="mt-4 text-neutral-700 dark:text-neutral-300 text-base md:text-lg">
-          Have questions, feedback, or collaboration ideas? We're here to help!
-          Reach out to us and let's connect.
+          Have questions, feedback, or collaboration ideas? We&apos;re here to
+          help! Reach out to us and let&apos;s connect.
         </p>
       </section>
 

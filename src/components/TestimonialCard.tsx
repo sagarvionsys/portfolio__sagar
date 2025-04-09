@@ -4,7 +4,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Testimonial } from "@/constants/testimonials";
 
 const TestimonialCard = ({
@@ -53,7 +52,7 @@ const TestimonialCard = ({
 
           {/* Message / Feedback */}
           <motion.p className="text-sm text-gray-600 dark:text-gray-300 italic px-4">
-            "{testimonial.message}"
+            &quot;{testimonial.message}&quot;
           </motion.p>
 
           {/* Company & Designation */}

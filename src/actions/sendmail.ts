@@ -5,7 +5,7 @@ import { redis } from "@/lib/redis";
 import { Resend } from "resend";
 
 const sendmail = async (
-  data: any,
+  data: unknown,
   email: string,
   subject: string,
   templateType: string

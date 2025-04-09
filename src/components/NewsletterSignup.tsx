@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState } from "react";
@@ -24,6 +25,7 @@ const NewsletterSignup: React.FC = () => {
 
       setEmail("");
     } catch (error: any) {
+      console.error(error);
       toast(error.message, {
         style: {
           background: "red",

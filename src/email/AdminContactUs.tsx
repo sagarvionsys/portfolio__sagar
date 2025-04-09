@@ -1,6 +1,6 @@
 import * as React from "react";
 
-interface AdminContactUsEmailProps {
+export interface AdminContactUsEmailProps {
   data: {
     email: string;
     name: string;

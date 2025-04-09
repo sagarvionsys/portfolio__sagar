@@ -15,12 +15,12 @@ export default function MeetPage() {
     <section>
       <div className="max-w-7xl mx-auto py-24 px-4 md:px-8 lg:px-10">
         <h1 className="text-2xl md:text-4xl font-bold mb-4 text-black dark:text-white max-w-4xl leading-tight">
-          Let's connect — book a one-on-one meeting
+          Let&apos;s connect — book a one-on-one meeting
         </h1>
         <p className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-2xl">
-          Whether it's to talk tech, explore collaboration, or just connect —
-          I'm available for a quick chat. Pick a time that works best for you
-          below.
+          Whether it&apos;s to talk tech, explore collaboration, or just connect
+          — I&apos;m available for a quick chat. Pick a time that works best for
+          you below.
         </p>
       </div>
 
