@@ -1,35 +1,36 @@
 const trpc_nextjs_from_zero_to_fullstack_hero = `
 
+# tRPC + Next.js: From Zero to Fullstack Hero
 
-In this guide, you'll learn how to integrate **tRPC** — a fully typesafe API framework — with **Next.js**, creating a powerful, schema-free fullstack experience.
+This guide walks you through integrating **tRPC** — a fully typesafe API framework — with **Next.js**, building a powerful, schema-free fullstack application.
 
-We'll walk through setting up:
-- tRPC
-- TanStack Query (React Query)
-- Zod for validation
-- SuperJSON for serialization
+We'll cover:
+- tRPC setup
+- React Query (TanStack Query) integration
+- Zod for input validation
+- SuperJSON for data serialization
 - Middleware for role-based access control
 
 ---
 
 ## Why tRPC + Next.js?
 
-- **tRPC** lets you call your backend procedures directly from the frontend **without writing API schemas or REST/GraphQL handlers**.
-- **Next.js** provides a seamless environment for server-side rendering (SSR) and API routes, making it a perfect match for tRPC.
+- **tRPC** allows you to call backend functions from the frontend **without writing API schemas or REST/GraphQL endpoints**.
+- **Next.js** provides server-side rendering (SSR), server components, and API routes — all ideal for tRPC.
 
-Together, they allow you to build **fully type-safe**, end-to-end applications with minimal boilerplate.
+Together, they enable **end-to-end type safety** with minimal boilerplate.
 
 ---
 
-##  Prerequisites
+## Prerequisites
 
-Make sure you have a Next.js app ready. If not, create one:
+Make sure you have a Next.js project. If not, create one:
 
 \`\`\`bash
 npx create-next-app@latest
 \`\`\`
 
-Then install the necessary dependencies:
+Install the required packages:
 
 \`\`\`bash
 npm install @trpc/server @trpc/client @trpc/react-query @tanstack/react-query zod superjson
@@ -37,17 +38,44 @@ npm install @trpc/server @trpc/client @trpc/react-query @tanstack/react-query zo
 
 ---
 
-##  Step 1: Initialize tRPC
+## Optional: Prisma Zod Integration
+
+If you're using Prisma and want to use Zod types generated from your schema:
+
+\`\`\`bash
+npm install zod-prisma-types
+\`\`\`
+
+Add this to your Prisma schema:
+
+\`\`\`ts
+generator zod {
+  provider = "zod-prisma-types"
+}
+\`\`\`
+
+Then run:
+
+\`\`\`bash
+npx prisma generate zod
+\`\`\`
+
+The types will be generated in \`schema/generated/zod\`.
+
+---
+
+## Step 1: Initialize tRPC
 
 \`\`\`ts
 // src/trpc/init.ts
-
 import { initTRPC } from "@trpc/server";
 import { cache } from "react";
 import superjson from "superjson";
 
 export const createTRPCContext = cache(async () => {
-  // Example mock user (could be from session/auth)
+
+// Here you can auth to get user session to add auth middleware
+
   const user = {
     name: "sager yenkure",
     id: "112233",
@@ -69,12 +97,11 @@ export const publicProcedure = t.procedure;
 export const middleware = t.middleware;
 \`\`\`
 
-**Explanation:**  
-We create a reusable tRPC instance with a context containing user info. This enables role-based logic later.
+This sets up a reusable tRPC instance with a context containing user data — enabling role-based logic later.
 
 ---
 
-##  Step 2: Create the Router
+## Step 2: Define the Router
 
 \`\`\`ts
 // src/trpc/router.ts
@@ -102,21 +129,16 @@ export const trpcRouter = createTRPCRouter({
 });
 
 export type TRPCRouter = typeof trpcRouter;
-
-// here the { createUser, getAllUsers, getUserById } are just async functions to perform server side logic like db query etc.
 \`\`\`
 
-**Explanation:**  
-Define "userRouter" with query and mutation procedures, each with Zod validation for input safety.
-
+Each route is defined with Zod for type-safe inputs and maps directly to backend logic.
 
 ---
 
-##  Step 3: Server Integration
+## Step 3: Setup the Server Caller
 
 \`\`\`ts
 // src/trpc/server.ts
-
 import "server-only";
 import { createHydrationHelpers } from "@trpc/react-query/rsc";
 import { cache } from "react";
@@ -134,16 +156,14 @@ export const { trpc, HydrateClient } = createHydrationHelpers<typeof trpcRouter>
 );
 \`\`\`
 
-**Explanation:**  
-We configure tRPC on the server using React Server Components (RSC) hydration helpers. This makes it easy to use queries server-side.
+This enables React Server Components (RSC) support for tRPC.
 
 ---
 
-##  Step 4: Setup Query Client
+## Step 4: Setup Query Client
 
 \`\`\`ts
 // src/trpc/query-client.ts
-
 import {
   defaultShouldDehydrateQuery,
   QueryClient,
@@ -165,16 +185,14 @@ export function makeQueryClient() {
 }
 \`\`\`
 
-**Explanation:**  
-A reusable function to create a React Query client. It also handles dehydration for SSR compatibility.
+Creates a reusable query client for SSR and hydration.
 
 ---
 
-##  Step 5: Client Setup & Provider
+## Step 5: Setup Client Provider
 
-\`\`\`ts
+\`\`\`tsx
 // src/trpc/client.tsx
-
 "use client";
 
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -195,7 +213,9 @@ function getQueryClient() {
 }
 
 function getUrl() {
-  const base = typeof window !== "undefined" ? "" : process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const base = typeof window !== "undefined"
+    ? ""
+    : process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
   return \`\${base}/api/trpc\`;
 }
 
@@ -223,16 +243,14 @@ export function TRPCProvider({ children }: { children: React.ReactNode }) {
 }
 \`\`\`
 
-**Explanation:**  
-This wraps your React app with both tRPC and React Query providers — essential for using hooks and caching.
+Wraps your app with both tRPC and React Query providers.
 
 ---
 
-##  Step 6: Wrap Layout with Provider
+## Step 6: Wrap Your Root Layout
 
 \`\`\`tsx
 // app/layout.tsx
-
 import { TRPCProvider } from "@/trpc/client";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -246,16 +264,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 \`\`\`
 
-**Explanation:**  
-Provides global access to tRPC and React Query throughout your app.
+Makes tRPC and React Query globally available.
 
 ---
 
-##  Step 7: Use tRPC in a Server Component
+## Step 7: Use tRPC in Server Components
 
 \`\`\`tsx
 // app/page.tsx
-
 import { trpc } from "@/trpc/server";
 
 export default async function Home() {
@@ -276,12 +292,11 @@ export default async function Home() {
 }
 \`\`\`
 
-**Explanation:**  
-Using "trpc" on the server is fully typesafe and fetches backend data without extra setup.
+SSR-safe queries with full type safety.
 
 ---
 
-##  Step 8: Use tRPC in a Client Component (Interactive)
+## Step 8: Use tRPC in Client Components
 
 \`\`\`tsx
 "use client";
@@ -316,7 +331,10 @@ export default function Home() {
         }
       </ol>
       <form onSubmit={handleSubmit}>
-        <input value={newUserName} onChange={(e) => setNewUserName(e.target.value)} />
+        <input
+          value={newUserName}
+          onChange={(e) => setNewUserName(e.target.value)}
+        />
         <button type="submit">{isPending ? "Adding..." : "Add User"}</button>
       </form>
     </main>
@@ -324,12 +342,11 @@ export default function Home() {
 }
 \`\`\`
 
-**Explanation:**  
-Client-side mutation with form state, optimistic updates, and cache invalidation — everything stays in sync!
+Client-side mutation with form state, optimistic updates, and cache invalidation.
 
 ---
 
-##  Step 9: Add Middleware (Auth / RBAC)
+## Step 9: Add Middleware for RBAC (Role-Based Access Control)
 
 \`\`\`ts
 // src/trpc/middleware.ts
@@ -354,7 +371,11 @@ import { z } from "zod";
 
 export const userRouter = {
   getAll: publicProcedure.query(() => getAllUsers()),
-  getById: publicProcedure.input(z.object({ id: z.number() })).query(({ input }) => getUserById(input.id)),
+
+  getById: publicProcedure
+    .input(z.object({ id: z.number() }))
+    .query(({ input }) => getUserById(input.id)),
+
   createUser: publicProcedure
     .use(userMiddleware)
     .use(adminMiddleware)
@@ -363,12 +384,11 @@ export const userRouter = {
 };
 \`\`\`
 
-**Explanation:**  
-Add layered access control. Only authenticated admins can create new users, for example.
+Adds layered access control using composable middleware.
 
 ---
 
-## s Final Thoughts
+## Final Thoughts
 
 Using **tRPC with Next.js** gives you:
 
@@ -377,9 +397,7 @@ Using **tRPC with Next.js** gives you:
 - No need to maintain API schemas
 - Clean integration with React Query and server components
 
-This setup is **scalable**, **robust**, and an absolute DX win for modern fullstack development.
-
----
+This setup is scalable, developer-friendly, and production-ready.
 
 `;
 
