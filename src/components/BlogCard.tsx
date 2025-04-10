@@ -17,9 +17,7 @@ const BlogCard = ({ post }: { post: Article }) => {
         <div className="sm:col-span-5">
           <div className="mb-4 md:mb-6">
             <div className="flex flex-wrap gap-3 text-xs uppercase tracking-wider text-muted-foreground md:gap-5 lg:gap-6">
-              {post.tags?.map((tag: string) => (
-                <Badge key={tag}>{tag}</Badge>
-              ))}
+              {post.tags?.map((tag: string) => <Badge key={tag}>{tag}</Badge>)}
             </div>
           </div>
           <Link href={`/blogs/${post.slug}`} className="hover:underline">
@@ -51,13 +49,13 @@ const BlogCard = ({ post }: { post: Article }) => {
           </div>
         </div>
         <div className="order-first sm:order-last sm:col-span-5">
-          <div className="aspect-[16/9] overflow-clip rounded-lg border border-border">
+          <div className="aspect-[16/9] relative overflow-clip rounded-lg border border-border">
             <Image
-              height={100}
-              width={100}
               src={post.image}
               alt={post.title}
-              className="h-full w-full object-cover transition-opacity duration-300 fade-in hover:opacity-70"
+              quality={100}
+              fill
+              className="object-contain transition-opacity duration-300 fade-in hover:opacity-70"
             />
           </div>
         </div>

@@ -1,6 +1,7 @@
 import how_to_initialize_shadcn_in_react from "./how-to-initilize-shadcn-in-react";
 import how_to_use_bun_with_hono from "./how-to-use-bun-with-hono";
 import how_to_use_redux_in_nextjs_with_typescript from "./how-to-use-redux-in-nextjs-with-typescript";
+import trpc_nextjs_from_zero_to_fullstack_hero from "./trpc-nextjs-from-zero-to-fullstack-hero";
 
 export interface Article {
   id: string;
@@ -26,8 +27,7 @@ const ContentList = [
     slug: "initialize-react-vite-shadcn",
     author: "Sagar Yenkure",
     published: "2024-03-20",
-    image:
-      "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=2070&auto=format&fit=crop",
+    image: "/shadcn_nextjs.png",
     tags: ["React", "Vite", "shadcn/ui", "TypeScript", "Tutorial"],
     content: how_to_initialize_shadcn_in_react,
   },
@@ -41,8 +41,7 @@ const ContentList = [
     slug: "how-to-use-redux-in-nextjs-with-typescript",
     author: "Sagar Yenkure",
     published: "2024-03-20",
-    image:
-      "https://images.unsplash.com/photo-1643116774075-acc00caa9a7b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/redux_nextjs.webp",
     tags: ["Next.js", "Redux", "TypeScript", "State Management", "Tutorial"],
     content: how_to_use_redux_in_nextjs_with_typescript,
   },
@@ -56,11 +55,24 @@ const ContentList = [
     slug: "how-to-use-bun-with-hono",
     author: "Sagar Yenkure",
     published: "2024-04-08",
-    image:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fHRlY2h8ZW58MHx8MHx8fDA%3D",
+    image: "/hono.webp",
     tags: ["Bun", "Hono", "Web Framework", "API", "Backend", "JavaScript"],
     content: how_to_use_bun_with_hono,
     honourLog: "Featured on Bun Weekly Highlights",
+  },
+  // trpc nextjs - full stack
+  {
+    id: "4",
+    title: "tRPC + Next.js: From Zero to Fullstack Hero",
+    summary:
+      "Go from zero to fullstack with tRPC and Next.js. Learn how to create typesafe APIs without REST or GraphQL using tRPC, Zod, and React Query.",
+    label: "Fullstack",
+    slug: "trpc-nextjs-from-zero-to-fullstack-hero",
+    author: "Sagar Yenkure",
+    published: "2025-04-10",
+    image: "/trpc.jpg",
+    tags: ["tRPC", "Next.js", "Zod", "React Query", "Fullstack", "TypeScript"],
+    content: trpc_nextjs_from_zero_to_fullstack_hero,
   },
 ];
 
