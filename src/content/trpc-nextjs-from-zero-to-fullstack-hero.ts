@@ -1,6 +1,5 @@
 const trpc_nextjs_from_zero_to_fullstack_hero = `
 
-# tRPC + Next.js: From Zero to Fullstack Hero
 
 This guide walks you through integrating **tRPC** — a fully typesafe API framework — with **Next.js**, building a powerful, schema-free fullstack application.
 

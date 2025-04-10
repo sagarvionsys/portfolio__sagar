@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import useDownloadResume from "@/hooks/useDownloadResume";
 
 function FloatingPaths({ position }: { position: number }) {
   const paths = Array.from({ length: 36 }, (_, i) => ({
@@ -55,6 +55,8 @@ export function BackgroundPaths({
 }: {
   title?: string;
 }) {
+  const url = process.env.NEXT_PUBLIC_RESUME_URL as string;
+  const { downloadResume, isLoading } = useDownloadResume(url);
   const words = title.split(" ");
 
   return (
@@ -106,23 +108,24 @@ export function BackgroundPaths({
             perfect GIF to express his excitement.
           </p>
 
-          <div
-            className="inline-block relative
-                        dark:from-white/10 dark:to-black/10 p-px space-x-3 gap-3
-                        overflow-hidden "
-          >
-            <Button
-              variant="ghost"
-              className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md hover:cursor-pointer hover:shadow-xl transition-shadow duration-300 
-                            bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                            text-black dark:text-white 
-                            group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                            dark:hover:shadow-neutral-800/50"
-            >
-              <span className="opacity-90 group-hover:opacity-100 transition-opacity">
-                Download Resume
-              </span>
-            </Button>
+          <div className="flex items-center justify-center">
+            <div className="relative group">
+              <button
+                onClick={downloadResume}
+                disabled={isLoading}
+                className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95"
+              >
+                <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
+
+                <span className="relative z-10 block px-6 py-3 rounded-xl bg-gray-950">
+                  <div className="relative z-10 flex items-center space-x-2">
+                    <span className="transition-all duration-100 group-hover:translate-x-1">
+                      {isLoading ? "Downloading..." : "Download Resume"}
+                    </span>
+                  </div>
+                </span>
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>
