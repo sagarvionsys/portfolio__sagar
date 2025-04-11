@@ -19,7 +19,6 @@ import { IconType } from "react-icons/lib";
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const [step, setStep] = useState(0);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const totalSteps = project.images.length;
   const hasMultipleImages = totalSteps > 1;
 
@@ -35,7 +34,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
     setStep((prevStep) => {
       const nextStep = prevStep + 1;
       if (nextStep < totalSteps) {
-        setImageLoaded(false);
         return nextStep;
       }
       return prevStep;
@@ -46,7 +44,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
     setStep((prevStep) => {
       const prev = prevStep - 1;
       if (prev >= 0) {
-        setImageLoaded(false);
         return prev;
       }
       return prevStep;
@@ -57,14 +54,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
     project.skills?.map((SkillIcon: IconType, index: number) => (
       <div
         key={index}
-        className="flex items-center p-2 bg-gray-100 dark:bg-gray-800 rounded-md"
+        className="flex items-center p-2 bg-gray-100 dark:bg-zinc-900 rounded-md"
       >
         <SkillIcon size={20} className="text-primary" />
       </div>
     ));
 
   return (
-    <Card className="shadow-lg relative dark:bg-zinc -900">
+    <Card className="shadow-lg relative dark:bg-zinc-900">
       <CardHeader className="flex gap-2 justify-between items-center">
         <div className="space-y-2">
           <CardTitle>{project.title}</CardTitle>
@@ -106,10 +103,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               style={{
-                filter: imageLoaded ? "none" : "blur(5px)",
                 transition: "filter 0.3s ease",
               }}
-              onLoad={() => setImageLoaded(true)}
             />
           </AnimatePresence>
         </div>

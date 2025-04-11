@@ -17,7 +17,7 @@ const Projects = () => {
   const renderProjectCards = (apps: Project[]) => {
     if (!apps || apps?.length === 0) return null;
     return (
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-10 mt-10">
+      <div className="max-w-7xl mx-2 mt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {apps.map((project: Project, index: number) => (
             <ProjectCard key={index} project={project} />

@@ -78,94 +78,136 @@ export default function Contact() {
   }
 
   return (
-    <motion.div
+    <div
       id="contact"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-background py-20 flex flex-col md:flex-row items-center"
+      className="min-h-screen flex items-center justify-center py-24 px-4 bg-gradient-to-b from-background to-background/80"
     >
-      <section className="max-w-xl text-center md:text-left md:w-1/2 px-6">
-        <h2 className="text-2xl md:text-4xl font-bold text-black dark:text-white">
-          Get in Touch with Us! 📬
-        </h2>
-        <p className="mt-4 text-neutral-700 dark:text-neutral-300 text-base md:text-lg">
-          Have questions, feedback, or collaboration ideas? We&apos;re here to
-          help! Reach out to us and let&apos;s connect.
-        </p>
-      </section>
-
-      <div className="w-full md:w-1/2 max-w-lg px-2">
+      <div className="w-full max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="mt-12 md:mt-0 bg-card p-8 rounded-lg shadow-md"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
         >
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              {/* Name Field */}
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="John Doe" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          {/* Left side - Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="space-y-6 ml-2"
+          >
+            <div className="inline-block">
+              <div className="h-1 w-12 bg-primary mb-6" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Let&apos;s connect
+            </h2>
+            <p className="text-muted-foreground max-w-md text-base">
+              Have questions or ideas? I&apos;m always open to discussing new
+              projects, creative ideas, or opportunities to be part of your
+              vision.
+            </p>
 
-              {/* Email Field */}
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="john@example.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* Message Field */}
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Message</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="How can we help you?"
-                        className="min-h-[120px]"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* Submit Button */}
-              <Button
-                type="submit"
-                className="w-full sm:w-auto flex items-center justify-center"
-                disabled={form.formState.isSubmitting}
+            <div className="pt-6">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="flex items-center space-x-2 text-muted-foreground"
               >
-                {loading ? "Sending..." : "Send Message"}
-                {!loading && <Send className="ml-2 h-4 w-4" />}
-              </Button>
-            </form>
-          </Form>
+                <div className="h-1 w-5 bg-primary/50" />
+                <span>Quick response, always</span>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Right side - Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="dark:bg-zinc-900 border border-border/40 rounded-lg p-8 shadow-sm"
+          >
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-5"
+              >
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-sm font-medium">
+                        Name
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Your name"
+                          {...field}
+                          className="bg-background/50 border-border/50 focus-visible:ring-primary/20"
+                        />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-sm font-medium">
+                        Email
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="your.email@example.com"
+                          {...field}
+                          className="bg-background/50 border-border/50 focus-visible:ring-primary/20"
+                        />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-sm font-medium">
+                        Message
+                      </FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="What would you like to discuss?"
+                          className="min-h-[120px] bg-background/50 border-border/50 focus-visible:ring-primary/20 resize-none"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )}
+                />
+
+                <Button
+                  type="submit"
+                  className="w-full mt-2 group transition-all duration-300"
+                  disabled={loading}
+                >
+                  <span className="mr-2">
+                    {loading ? "Sending..." : "Send Message"}
+                  </span>
+                  <Send className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </Button>
+              </form>
+            </Form>
+          </motion.div>
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 }
